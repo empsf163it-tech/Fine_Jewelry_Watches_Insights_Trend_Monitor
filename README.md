@@ -1,0 +1,2 @@
+# Fine_Jewelry_Watches_Insights_Trend_Monitor
+Automated website repository for Fine_Jewelry_Watches_Insights_Trend_Monitor
