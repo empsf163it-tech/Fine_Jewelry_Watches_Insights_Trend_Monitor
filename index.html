@@ -1,0 +1,3629 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MAISON — Luxury Jewelry &amp; Watch Intelligence</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <style>
+        :root {
+            --bg: #0b0e11;
+            --panel: #14191e;
+            --panel2: #1a2026;
+            --line: #2b333b;
+            --text: #f4f1e9;
+            --muted: #9ba5ae;
+            --gold: #d7b77a;
+            --green: #72d2a1;
+            --red: #ef8b8b;
+            --blue: #9fc7ef
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 14px/1.45 Inter, system-ui, sans-serif
+        }
+
+        button,
+        input,
+        select {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: 225px 1fr;
+            min-height: 100vh
+        }
+
+        .sidebar {
+            box-sizing: border-box;
+            background: #101418;
+            border-right: 1px solid var(--line);
+            padding: 14px 11px 16px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(215, 183, 122, 0.28) transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(215, 183, 122, 0.28);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(215, 183, 122, 0.55);
+        }
+
+        .brand {
+            display: flex;
+            gap: 9px;
+            align-items: center;
+            padding: 2px 6px 12px;
+            flex-shrink: 0;
+        }
+
+        .mark {
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            font: 18px Georgia;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .brand-logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 16px rgba(215, 183, 122, 0.35);
+            background: #000;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .auth-logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(215, 183, 122, 0.35);
+            background: #000;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .topbar-logo-img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 12px rgba(215, 183, 122, 0.25);
+            background: #000;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .page-title-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 14px rgba(215, 183, 122, 0.28);
+            background: #000;
+            vertical-align: middle;
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        .brand b {
+            font: 13px Georgia;
+            letter-spacing: .12em;
+            line-height: 1.2;
+        }
+
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 8.5px;
+            letter-spacing: .1em;
+            margin-top: 2px;
+        }
+
+        .navlabel {
+            font-size: 9.5px;
+            letter-spacing: .16em;
+            color: #69747e;
+            padding: 7px 8px 3px;
+            flex-shrink: 0;
+        }
+
+        .nav button {
+            display: block;
+            text-align: left;
+            width: 100%;
+            padding: 8px 10px;
+            margin: 1px 0;
+            border: 0;
+            border-radius: 7px;
+            color: #aeb7be;
+            background: transparent;
+            font-size: 12.5px;
+            transition: all 0.15s ease;
+        }
+
+        .nav button.active,
+        .nav button:hover {
+            background: #252a2f;
+            color: var(--gold);
+        }
+
+        .note {
+            box-sizing: border-box;
+            margin: 6px 1px 4px;
+            padding: 9px 10px;
+            border: 1px solid rgba(215, 183, 122, 0.22);
+            border-radius: 8px;
+            background: rgba(20, 25, 30, 0.75);
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.45;
+            flex-shrink: 0;
+        }
+
+        .note b {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gold);
+            margin-bottom: 3px;
+            font-size: 10px;
+            letter-spacing: .08em;
+        }
+
+        .topbar {
+            height: 68px;
+            position: sticky;
+            top: 0;
+            background: #0c1014ed;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 0 25px;
+            z-index: 5
+        }
+
+        .crumb {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .crumb b {
+            color: var(--text)
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px
+        }
+
+        .search,
+        .select,
+        .btn {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--text);
+            padding: 9px 11px;
+            border-radius: 8px
+        }
+
+        .search {
+            width: min(300px, 28vw)
+        }
+
+        .btn.gold {
+            background: var(--gold);
+            color: #16130d;
+            border-color: var(--gold);
+            font-weight: 700
+        }
+
+        .content {
+            padding: 26px;
+            max-width: 1600px;
+            margin: auto
+        }
+
+        .page {
+            display: none
+        }
+
+        .page.active {
+            display: block
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 15px;
+            margin-bottom: 20px
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: .18em;
+            color: var(--gold);
+            text-transform: uppercase
+        }
+
+        .heading h1 {
+            font: 500 clamp(27px, 3vw, 38px)/1.12 Georgia;
+            margin: 7px 0
+        }
+
+        .heading p {
+            color: var(--muted);
+            margin: 0;
+            max-width: 700px
+        }
+
+        .stamp {
+            border: 1px solid var(--line);
+            padding: 9px 11px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 10px;
+            white-space: nowrap
+        }
+
+        .notice {
+            border: 1px solid #66583c;
+            background: #211e17;
+            color: #d8caa8;
+            border-radius: 8px;
+            padding: 11px 13px;
+            font-size: 11px;
+            margin-bottom: 16px
+        }
+
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 15px
+        }
+
+        .kpi,
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            padding: 16px;
+            min-width: 0
+        }
+
+        .label {
+            color: var(--muted);
+            font-size: 11px
+        }
+
+        .value {
+            font: 28px Georgia;
+            margin: 8px 0 4px
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        .positive {
+            color: var(--green)
+        }
+
+        .negative {
+            color: var(--red)
+        }
+
+        .overview {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 13px;
+            margin-bottom: 16px
+        }
+
+        .panelhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 13px
+        }
+
+        .panel h2 {
+            font: 500 18px Georgia;
+            margin: 0
+        }
+
+        .panelhead p {
+            font-size: 10px;
+            color: var(--muted);
+            margin: 4px 0 0
+        }
+
+        .chart {
+            width: 100%;
+            height: 190px;
+            display: block
+        }
+
+        .signal {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 12px
+        }
+
+        .signal:last-child {
+            border: 0
+        }
+
+        .signal small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 3px
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 13px
+        }
+
+        .toolbar input {
+            flex: 1;
+            min-width: 170px
+        }
+
+        .toolbar input,
+        .toolbar select {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--text);
+            padding: 10px;
+            border-radius: 8px
+        }
+
+        .chips {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-bottom: 14px
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: var(--panel);
+            color: var(--muted);
+            padding: 7px 11px;
+            font-size: 11px
+        }
+
+        .chip.active {
+            color: var(--gold);
+            border-color: var(--gold)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            min-width: 0
+        }
+
+        .card:hover {
+            border-color: #806b46;
+            transform: translateY(-2px)
+        }
+
+        .photo {
+            height: 170px;
+            position: relative;
+            background: #22292f
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .tag {
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            background: #101418dd;
+            color: var(--gold);
+            border: 1px solid #555044;
+            border-radius: 20px;
+            padding: 4px 7px;
+            font-size: 9px
+        }
+
+        .star {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: #101418dd;
+            border: 1px solid #625a4a;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            color: white;
+            font-size: 16px
+        }
+
+        .star.on {
+            color: var(--gold);
+            border-color: var(--gold)
+        }
+
+        .cardbody {
+            padding: 12px
+        }
+
+        .brandname {
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: .15em;
+            text-transform: uppercase
+        }
+
+        .card h3 {
+            font: 500 15px/1.25 Georgia;
+            margin: 6px 0
+        }
+
+        .meta {
+            font-size: 10px;
+            color: var(--muted);
+            min-height: 15px
+        }
+
+        .cardfoot {
+            border-top: 1px solid var(--line);
+            margin-top: 10px;
+            padding-top: 9px;
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            font-size: 10px
+        }
+
+        .price {
+            font-weight: 650
+        }
+
+        .tablewrap {
+            overflow: auto
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px
+        }
+
+        td,
+        th {
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+            padding: 11px 9px;
+            white-space: nowrap
+        }
+
+        th {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: .1em
+        }
+
+        .mini {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .mini img {
+            width: 37px;
+            height: 37px;
+            object-fit: cover;
+            border-radius: 5px
+        }
+
+        .mini small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        .status {
+            font-size: 10px;
+            border-radius: 20px;
+            padding: 4px 7px;
+            background: #222a30;
+            color: var(--gold)
+        }
+
+        .status.rising {
+            color: var(--green)
+        }
+
+        .status.declining {
+            color: var(--red)
+        }
+
+        .linkbtn {
+            border: 0;
+            background: none;
+            color: var(--gold);
+            font-size: 11px
+        }
+
+        .empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 40px;
+            color: var(--muted)
+        }
+
+        .modalback {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 7, 10, 0.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            z-index: 1050;
+            padding: 24px;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s ease;
+        }
+
+        .modalback.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        #adminModal {
+            z-index: 1200;
+        }
+
+        .modal {
+            position: relative;
+            background: #11151a;
+            background: linear-gradient(180deg, #161c24 0%, #101418 100%);
+            border: 1px solid rgba(215, 183, 122, 0.28);
+            border-radius: 16px;
+            overflow: hidden;
+            width: min(920px, 100%);
+            max-height: min(90vh, 880px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(215, 183, 122, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transform: scale(0.95) translateY(14px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modalback.open .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .close {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            z-index: 25;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(18, 23, 29, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #c9d2db;
+            border: 1px solid rgba(215, 183, 122, 0.25);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            padding: 0;
+            line-height: 1;
+        }
+
+        .close:hover {
+            background: #252d36;
+            color: #ffffff;
+            border-color: var(--gold);
+            transform: rotate(90deg) scale(1.08);
+            box-shadow: 0 4px 18px rgba(215, 183, 122, 0.3);
+        }
+
+        .modalgrid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            max-height: min(90vh, 880px);
+            overflow: hidden;
+        }
+
+        .modalphoto {
+            position: relative;
+            min-height: 440px;
+            background: #0d1115;
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .modalphoto img {
+            width: 100%;
+            height: 100%;
+            min-height: 440px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modalphoto:hover img {
+            transform: scale(1.04);
+        }
+
+        .modalphoto-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(13, 17, 21, 0.75) 100%);
+            pointer-events: none;
+        }
+
+        .modalphoto-badge {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            z-index: 5;
+            background: rgba(14, 18, 22, 0.88);
+            border: 1px solid rgba(215, 183, 122, 0.4);
+            border-radius: 6px;
+            padding: 6px 11px;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            backdrop-filter: blur(6px);
+            font-weight: 600;
+        }
+
+        .modalbody {
+            padding: 28px 32px;
+            overflow-y: auto;
+            max-height: min(90vh, 880px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modalbody::-webkit-scrollbar,
+        .report-modal-scroll::-webkit-scrollbar,
+        .admin-modal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modalbody::-webkit-scrollbar-track,
+        .report-modal-scroll::-webkit-scrollbar-track,
+        .admin-modal-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .modalbody::-webkit-scrollbar-thumb,
+        .report-modal-scroll::-webkit-scrollbar-thumb,
+        .admin-modal-scroll::-webkit-scrollbar-thumb {
+            background: #3c3425;
+            border-radius: 3px;
+        }
+
+        .modalbody::-webkit-scrollbar-thumb:hover,
+        .report-modal-scroll::-webkit-scrollbar-thumb:hover,
+        .admin-modal-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        .modalbody h2 {
+            font: 500 28px/1.15 Georgia, serif;
+            margin: 6px 0 4px;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .detail {
+            background: rgba(22, 28, 35, 0.7);
+            border: 1px solid rgba(215, 183, 122, 0.14);
+            padding: 12px 14px;
+            border-radius: 9px;
+            transition: all 0.2s ease;
+        }
+
+        .detail:hover {
+            background: rgba(27, 34, 43, 0.95);
+            border-color: rgba(215, 183, 122, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .detail small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .detail b {
+            font-size: 13px;
+            color: var(--text);
+            display: block;
+        }
+
+        .section {
+            border-top: 1px solid rgba(215, 183, 122, 0.12);
+            padding-top: 14px;
+            margin-top: 14px;
+        }
+
+        .section h3 {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section p {
+            font-size: 12px;
+            line-height: 1.55;
+            color: #b9c1c7;
+            margin: 0;
+        }
+
+        .modalactions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(215, 183, 122, 0.12);
+            flex-wrap: wrap;
+        }
+
+        .footer {
+            font-size: 10px;
+            color: #77828b;
+            margin-top: 14px;
+            letter-spacing: 0.04em;
+        }
+
+        /* Executive Brief Modal Styles */
+        .report-modal {
+            width: min(840px, 100%);
+            max-height: min(90vh, 880px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .report-modal-scroll {
+            padding: 30px 34px;
+            overflow-y: auto;
+            max-height: min(90vh, 880px);
+        }
+
+        .report-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .report-stat-card {
+            background: rgba(22, 28, 35, 0.7);
+            border: 1px solid rgba(215, 183, 122, 0.16);
+            padding: 11px 13px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .report-stat-card small {
+            display: block;
+            font-size: 9.5px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .report-stat-card b {
+            font-size: 14px;
+            color: var(--gold);
+        }
+
+        .report-summary-box {
+            padding: 14px 16px;
+            background: rgba(215, 183, 122, 0.05);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: #d1d8df;
+            margin: 10px 0 16px;
+        }
+
+        .takeaway-list {
+            padding: 0;
+            margin: 8px 0 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .takeaway-item {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #c0cad2;
+            padding: 9px 13px;
+            background: rgba(18, 23, 29, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 6px;
+        }
+
+        .takeaway-bullet {
+            color: var(--gold);
+            font-size: 13px;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        .cited-piece-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px;
+            background: rgba(22, 28, 35, 0.85);
+            border: 1px solid rgba(215, 183, 122, 0.18);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cited-piece-chip:hover {
+            background: rgba(30, 38, 48, 0.95);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Admin Capacity Modal Styles */
+        .admin-modal {
+            width: min(520px, 100%);
+            background: #13171c;
+            background: linear-gradient(180deg, #181e26 0%, #111418 100%);
+            border: 1px solid rgba(215, 183, 122, 0.35);
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(215, 183, 122, 0.18);
+        }
+
+        .admin-modal-scroll {
+            padding: 30px 30px 24px;
+            max-height: min(90vh, 880px);
+            overflow-y: auto;
+        }
+
+        .admin-badge-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2e2314 0%, #1a150c 100%);
+            border: 1px solid var(--gold);
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            font-size: 21px;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(215, 183, 122, 0.2);
+        }
+
+        .admin-alert-banner {
+            margin-bottom: 16px;
+            padding: 13px 15px;
+            border-radius: 8px;
+            font-size: 11.5px;
+            line-height: 1.5;
+            transition: all 0.2s;
+        }
+
+        .admin-alert-banner.warning {
+            background: rgba(45, 23, 23, 0.95);
+            border: 1px solid #783535;
+            color: #fbd3d3;
+        }
+
+        .admin-alert-banner.info {
+            background: rgba(28, 25, 17, 0.95);
+            border: 1px solid #6b5731;
+            color: #faecc9;
+        }
+
+        .inc-chip {
+            padding: 8px 13px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(22, 28, 35, 0.85);
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .inc-chip:hover,
+        .inc-chip.active {
+            background: #252e38;
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+            max-width: min(380px, calc(100vw - 32px));
+        }
+
+        .maison-toast {
+            pointer-events: auto;
+            background: rgba(18, 23, 29, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(215, 183, 122, 0.35);
+            border-radius: 10px;
+            padding: 12px 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text);
+            animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .maison-toast.fade-out {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        .maison-toast.success {
+            border-color: rgba(94, 189, 137, 0.45);
+        }
+
+        .maison-toast.warning {
+            border-color: rgba(230, 162, 60, 0.5);
+        }
+
+        .maison-toast .toast-icon {
+            color: var(--gold);
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .maison-toast.success .toast-icon {
+            color: var(--green);
+        }
+
+        .maison-toast.warning .toast-icon {
+            color: #f0a34b;
+        }
+
+        .maison-toast .toast-msg {
+            flex: 1;
+            line-height: 1.45;
+        }
+
+        .maison-toast .toast-close {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+        }
+
+        .maison-toast .toast-close:hover {
+            color: #fff;
+        }
+
+        @keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media(max-width:1100px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .kpis {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:800px) {
+            .app {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                padding: 10px;
+                border-right: 0;
+                border-bottom: 1px solid var(--line)
+            }
+
+            .brand {
+                padding: 5px 8px 10px
+            }
+
+            .navlabel,
+            .note {
+                display: none
+            }
+
+            .nav {
+                display: flex;
+                overflow: auto
+            }
+
+            .nav button {
+                white-space: nowrap;
+                width: auto;
+                flex-shrink: 0
+            }
+
+            .topbar {
+                padding: 0 12px
+            }
+
+            .content {
+                padding: 16px 12px
+            }
+
+            .overview {
+                grid-template-columns: 1fr
+            }
+
+            .heading {
+                align-items: flex-start;
+                flex-direction: column
+            }
+
+            .stamp {
+                display: none
+            }
+
+            .modalback {
+                padding: 14px;
+            }
+
+            .modal {
+                max-height: 94vh;
+            }
+
+            .modalgrid {
+                grid-template-columns: 1fr;
+                max-height: 94vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .modalphoto,
+            .modalphoto img {
+                height: 220px;
+                min-height: 220px;
+            }
+
+            .modalbody {
+                max-height: none;
+                overflow-y: visible;
+                padding: 22px 20px;
+            }
+
+            .report-modal-scroll,
+            .admin-modal-scroll {
+                padding: 22px 18px 20px;
+            }
+
+            .report-stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:480px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px
+            }
+
+            .photo {
+                height: 130px
+            }
+
+            .cardbody {
+                padding: 9px
+            }
+
+            .card h3 {
+                font-size: 13px
+            }
+
+            .search {
+                width: 100%;
+                min-width: 0
+            }
+
+            .actions .btn {
+                display: none
+            }
+
+            .topbar {
+                gap: 5px
+            }
+
+            .crumb {
+                display: none
+            }
+
+            .actions {
+                width: 100%
+            }
+
+            .content {
+                padding: 12px 8px
+            }
+
+            .kpi {
+                padding: 12px
+            }
+
+            .value {
+                font-size: 24px
+            }
+
+            .modalback {
+                padding: 10px;
+            }
+
+            .modalbody {
+                padding: 18px 14px;
+            }
+
+            .report-modal-scroll {
+                padding: 20px 14px;
+            }
+
+            .admin-modal-scroll {
+                padding: 20px 14px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .live-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 6px var(--green);
+            animation: livePulse 2s infinite
+        }
+
+        @keyframes livePulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .35;
+                transform: scale(.8)
+            }
+        }
+
+        .feed-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .feed-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 9px 11px;
+            border-radius: 8px;
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            font-size: 11px;
+            transition: border-color .2s;
+            cursor: pointer
+        }
+
+        .feed-item:hover {
+            border-color: #635338
+        }
+
+        .feed-item b {
+            color: var(--text);
+            font-weight: 600;
+            display: block
+        }
+
+        .feed-item small {
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        .feed-tag {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #20262c;
+            color: var(--gold);
+            border: 1px solid #4a4132;
+            white-space: nowrap
+        }
+
+        .feed-status {
+            font-size: 9px;
+            border-radius: 12px;
+            padding: 2px 7px
+        }
+
+        .feed-status.active {
+            background: #152b1e;
+            color: var(--green);
+            border: 1px solid #234c34
+        }
+
+        .feed-status.triggered {
+            background: #321a1a;
+            color: var(--red);
+            border: 1px solid #5a2828
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 13px
+        }
+
+        .report-card {
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform .2s, border-color .2s
+        }
+
+        .report-card:hover {
+            border-color: #806b46;
+            transform: translateY(-2px)
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px
+        }
+
+        .report-tag {
+            font-size: 9px;
+            letter-spacing: .12em;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 600
+        }
+
+        .report-time {
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        .report-card h3 {
+            font: 500 16px/1.3 Georgia;
+            margin: 0 0 8px;
+            color: var(--text)
+        }
+
+        .report-card p {
+            font-size: 11.5px;
+            color: var(--muted);
+            line-height: 1.5;
+            margin: 0 0 12px;
+            flex: 1
+        }
+
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            padding: 9px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 13px
+        }
+
+        .report-stat-item small {
+            display: block;
+            font-size: 9px;
+            color: var(--muted)
+        }
+
+        .report-stat-item b {
+            font-size: 11px;
+            color: var(--gold)
+        }
+
+        .notes-deck {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 360px;
+            overflow-y: auto;
+            padding-right: 3px
+        }
+
+        .note-card {
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            transition: border-color .2s
+        }
+
+        .note-card:hover {
+            border-color: #65563c
+        }
+
+        .note-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px
+        }
+
+        .note-card-head b {
+            font-size: 12px;
+            color: var(--text);
+            font-weight: 600
+        }
+
+        .note-card-badge {
+            font-size: 9px;
+            color: var(--gold);
+            background: #23221b;
+            border: 1px solid #574d39;
+            border-radius: 4px;
+            padding: 2px 6px
+        }
+
+        .note-card-date {
+            font-size: 10px;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        .note-card p {
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: #c0cad0;
+            margin: 0
+        }
+
+        .del-note-btn {
+            background: transparent;
+            border: 0;
+            color: #6b7680;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0 4px
+        }
+
+        .del-note-btn:hover {
+            color: var(--red)
+        }
+
+        .empty-rich {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 36px 18px;
+            background: var(--panel2);
+            border: 1px dashed #3a424a;
+            border-radius: 10px
+        }
+
+        @media(max-width:1100px) {
+            .report-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .auth-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(22, 28, 36, 0.96), rgba(6, 9, 12, 0.98));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 24px 16px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            transition: opacity 0.3s ease;
+        }
+
+        .auth-screen.hidden {
+            display: none !important;
+        }
+
+        .auth-card {
+            margin: auto;
+            box-sizing: border-box;
+            background: #13181e;
+            background: linear-gradient(180deg, #181f28 0%, #111419 100%);
+            border: 1px solid rgba(215, 183, 122, 0.35);
+            border-radius: 18px;
+            padding: 22px 26px;
+            width: min(440px, 100%);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(215, 183, 122, 0.08);
+            position: relative;
+            animation: authFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .auth-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .auth-logo-mark {
+            width: 44px;
+            height: 44px;
+            font-size: 22px;
+            font-family: Georgia, serif;
+            font-weight: 700;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            background: radial-gradient(circle at 30% 30%, #2a3441, #13181e);
+            box-shadow: 0 0 20px rgba(215, 183, 122, 0.25);
+            flex-shrink: 0;
+        }
+
+        .auth-brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-title {
+            font: 600 22px/1.15 Georgia, serif;
+            margin: 0;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        .auth-subtitle {
+            font-size: 9.5px;
+            color: var(--muted);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 500;
+        }
+
+        @keyframes authFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .auth-card input:focus-visible {
+            outline: none;
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 0 3px rgba(215, 183, 122, 0.2);
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 14px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            background: none;
+            border: 0;
+            border-bottom: 2px solid transparent;
+            color: var(--muted);
+            padding: 8px 10px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: color .2s, border-color .2s;
+        }
+
+        .auth-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .pwd-checklist-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 10px;
+        }
+
+        .chk-item {
+            font-size: 10.5px;
+            color: #808b94;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color .2s;
+        }
+
+        .chk-item .chk-icon {
+            font-weight: bold;
+            width: 13px;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .chk-item.valid {
+            color: var(--green) !important;
+        }
+
+        .chk-item.valid .chk-icon {
+            color: var(--green) !important;
+        }
+
+        .user-authed .auth-screen {
+            display: none !important;
+        }
+    </style>
+    <script>try { if (localStorage.getItem('maison_auth_user')) { document.documentElement.classList.add('user-authed') } } catch (e) { }</script>
+</head>
+
+<body>
+    <div class="auth-screen" id="authScreen">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="logo.png" alt="MAISON" class="auth-logo-mark auth-logo-img">
+                <div class="auth-brand-text">
+                    <h2 class="auth-title">MAISON</h2>
+                    <div class="auth-subtitle">Luxury Jewelry &amp; Watch Intelligence</div>
+                </div>
+            </div>
+
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" id="tabLogin">Sign In</button>
+                <button type="button" class="auth-tab" id="tabRegister">Create Account</button>
+            </div>
+
+            <div id="authNotice" class="notice" style="display:none;margin-bottom:12px;padding:8px 12px;font-size:11px">
+            </div>
+
+            <form id="authForm" novalidate>
+                <div style="margin-bottom:11px;text-align:left" id="authNameGroup">
+                    <label
+                        style="display:block;font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:4px"
+                        for="authName">Full Name</label>
+                    <input type="text" id="authName" placeholder="e.g. Eleanor Vance"
+                        style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 12px;border-radius:8px;font-size:12.5px">
+                </div>
+
+                <div style="margin-bottom:11px;text-align:left">
+                    <label
+                        style="display:block;font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:4px"
+                        for="authEmail">Email Address</label>
+                    <input type="email" id="authEmail" placeholder="analyst@maison-intelligence.com" required
+                        style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 12px;border-radius:8px;font-size:12.5px">
+                </div>
+
+                <div style="margin-bottom:11px;text-align:left">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <label style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase"
+                            for="authPassword">Password</label>
+                        <span style="font-size:9.5px;color:var(--muted)">Any password you prefer</span>
+                    </div>
+                    <div style="position:relative">
+                        <input type="password" id="authPassword" placeholder="Enter your password" required
+                            style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 12px;border-radius:8px;font-size:12.5px;padding-right:38px">
+                        <button type="button" id="togglePasswordBtn"
+                            style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer"
+                            aria-label="Toggle password visibility">👁</button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:11px;text-align:left;display:none" id="authConfirmPasswordGroup">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <label style="font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase"
+                            for="authConfirmPassword">Confirm Password</label>
+                        <span id="confirmPwdMatchBadge" style="font-size:9.5px;color:var(--muted)">Must match password</span>
+                    </div>
+                    <div style="position:relative">
+                        <input type="password" id="authConfirmPassword" placeholder="Re-enter your password"
+                            style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 12px;border-radius:8px;font-size:12.5px;padding-right:38px">
+                        <button type="button" id="toggleConfirmPasswordBtn"
+                            style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer"
+                            aria-label="Toggle confirm password visibility">👁</button>
+                    </div>
+                </div>
+
+                <!-- Live Password Helper Checklist -->
+                <div id="pwdChecklist"
+                    style="margin-bottom:12px;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 12px">
+                    <div
+                        style="font-size:9.5px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">
+                        Password Checklist (Guidance):</div>
+                    <div class="pwd-checklist-grid">
+                        <div class="chk-item" id="chkLen"><span class="chk-icon">○</span> Min 6 characters</div>
+                        <div class="chk-item" id="chkUpper"><span class="chk-icon">○</span> 1 uppercase (A–Z)</div>
+                        <div class="chk-item" id="chkNum"><span class="chk-icon">○</span> 1 number (0–9)</div>
+                        <div class="chk-item" id="chkSpecial"><span class="chk-icon">○</span> 1 symbol (@$!%*#?&)</div>
+                    </div>
+                </div>
+
+                <!-- Login Extras: Remember Me & Forgot Password & Login as Admin (Login Mode Only) -->
+                <div id="authLoginExtras" style="margin-bottom:12px;text-align:left">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;font-size:11px">
+                        <label style="display:flex;align-items:center;gap:7px;color:#c0cad2;cursor:pointer;user-select:none">
+                            <input type="checkbox" id="authRememberMe" style="accent-color:var(--gold);width:14px;height:14px;cursor:pointer;margin:0">
+                            <span>Remember me</span>
+                        </label>
+                        <button type="button" class="linkbtn" id="forgotPasswordBtn" style="color:var(--gold);font-size:11px;font-weight:600;padding:0;background:none;border:none;cursor:pointer">Forgot password?</button>
+                    </div>
+
+                    <div style="background:rgba(215,183,122,0.06);border:1px solid rgba(215,183,122,0.22);border-radius:8px;padding:8px 11px">
+                        <label style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text);cursor:pointer;user-select:none;font-weight:600">
+                            <input type="checkbox" id="authLoginAsAdmin" style="accent-color:var(--gold);width:14px;height:14px;cursor:pointer;margin:0">
+                            <span style="display:flex;align-items:center;gap:6px">
+                                <span style="color:var(--gold)">Login as Admin</span>
+                                <span style="font-size:8.5px;background:#2a2318;color:var(--gold);border:1px solid #57482a;padding:1px 5px;border-radius:3px;font-weight:700">ADMIN</span>
+                            </span>
+                        </label>
+                        <div style="font-size:9.5px;color:var(--muted);margin-top:3px;margin-left:22px">
+                            Auto-fill default: Admin &bull; admin@gmail.com &bull; Admin@123
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions in Create Account section -->
+                <div id="authTermsGroup" style="margin-bottom:13px;text-align:left;display:none">
+                    <label style="display:flex;align-items:flex-start;gap:8px;font-size:11px;color:#c0cad2;cursor:pointer;line-height:1.45">
+                        <input type="checkbox" id="authTermsCheckbox" style="margin-top:2px;accent-color:var(--gold);width:14px;height:14px;cursor:pointer">
+                        <span>I agree to the <button type="button" class="linkbtn" id="openTermsLink" style="color:var(--gold);font-weight:600;text-decoration:underline;padding:0;font-size:11px">Terms &amp; Conditions</button> and Data Privacy Charter</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="authSubmitBtn" class="btn gold"
+                    style="width:100%;padding:10px 14px;font-size:13px;font-weight:700;letter-spacing:.05em">Sign In to Platform</button>
+            </form>
+
+            <div style="margin-top:13px;font-size:11px;color:var(--muted)" id="authSwitchPrompt">
+                Don't have an account? <button type="button" class="linkbtn" id="linkSwitch"
+                    style="font-weight:600">Create one now →</button>
+            </div>
+        </div>
+    </div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="logo.png" alt="MAISON" class="mark brand-logo-img">
+                <div><b>MAISON</b><small>JEWELRY &amp; WATCH INTELLIGENCE</small></div>
+            </div>
+            <div class="navlabel">INTELLIGENCE</div>
+            <nav class="nav"><button class="active" data-page="overview">◈ &nbsp;Overview</button><button
+                    data-page="catalog">⌕ &nbsp;Tracked items <span id="navCount"></span></button><button
+                    data-page="monitoring">⌁ &nbsp;Monitoring</button><button data-page="watchlist">☆ &nbsp;Watchlist
+                    <span id="watchCount">0</span></button></nav>
+            <div class="navlabel">RESEARCH</div>
+            <nav class="nav"><button data-page="signals">↗ &nbsp;Trend signals</button><button data-page="reports">▤
+                    &nbsp;Reports & notes</button><button id="logoutBtn"
+                    style="display:flex;align-items:center;gap:7px;color:#ef8b8b;margin-top:6px;border:1px solid #4f2828;background:#1e1414;cursor:pointer;padding:8px 10px;width:100%;border-radius:7px;font-size:12px;font-weight:600"><span>⎋</span>
+                    Logout</button></nav>
+            <div id="sidebarUser"
+                style="margin:8px 1px 5px;padding:8px 10px;background:#14191e;border:1px solid var(--line);border-radius:8px;flex-shrink:0">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
+                    <small style="display:block;font-size:9px;color:var(--muted);letter-spacing:.1em">AUTHORIZED SESSION</small>
+                    <span id="sidebarAdminBadge" style="display:none;font-size:8.5px;background:#2a2318;color:var(--gold);border:1px solid #57482a;padding:1px 5px;border-radius:3px;font-weight:700">ADMIN</span>
+                </div>
+                <div id="userNameSpan" style="font-size:12px;font-weight:700;color:var(--text);line-height:1.3">Analyst</div>
+                <div id="userEmailSpan" style="font-size:10px;color:var(--gold);word-break:break-all;margin-top:2px">analyst@maison.internal</div>
+            </div>
+            <div class="note" id="sidebarNote"><b><span>✦</span> DEMO WORKSPACE</b>Curated luxury market intelligence. Trend values and alerts are simulated, not live market data.</div>
+        </aside>
+        <main>
+            <header class="topbar">
+                <button type="button" id="adminCapacityBtn" class="stamp" style="background:var(--panel2);border:1px solid var(--line);cursor:pointer;display:none;align-items:center;gap:7px;color:var(--text);font-size:11px;padding:7px 12px;border-radius:8px" title="Manage user capacity"><span>👥</span> <span>Active Users: <b id="topbarCapacityCount" style="color:var(--gold)">2 / 10</b></span> <span style="font-size:9px;background:#2a2318;color:var(--gold);border:1px solid #57482a;padding:2px 6px;border-radius:4px;font-weight:700">ADMIN</span></button>
+                <div class="actions" style="margin-left:auto"><input class="search" id="globalSearch"
+                        placeholder="Search brands, models, materials…"><button class="btn" id="goWatch">☆
+                        Watchlist</button><button class="btn gold" id="export">Export CSV</button></div>
+            </header>
+            <div class="content">
+                <section class="page active" id="page-overview">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Luxury market intelligence / example workspace</div>
+                            <h1>Jewelry &amp; Watch Monitor</h1>
+                            <p>Monitor a curated universe of luxury watch and fine-jewelry pieces. Click any item for
+                                its profile, trend indicators, and monitoring rule.</p>
+                        </div>
+                        <div class="stamp">● DEMO SNAPSHOT · NOT LIVE DATA</div>
+                    </div>
+                    <div class="notice">Demo notice: price ranges and trend scores are illustrative. Photos are
+                        representative category imagery, not verified images of each exact model. No live price/news
+                        feed is connected.</div>
+                    <div class="kpis">
+                        <div class="kpi">
+                            <div class="label">Tracked catalog</div>
+                            <div class="value" id="kpiTotal"></div>
+                            <div class="sub">Watches &amp; fine jewelry</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Items on watchlist</div>
+                            <div class="value" id="kpiWatch">0</div>
+                            <div class="sub">Choose ☆ on a product</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Rising demo signals</div>
+                            <div class="value" id="kpiRising">0</div>
+                            <div class="sub">Simulated direction only</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">High attention</div>
+                            <div class="value" id="kpiHigh">0</div>
+                            <div class="sub">Example priority ranking</div>
+                        </div>
+                    </div>
+                    <div class="overview">
+                        <div class="panel">
+                            <div class="panelhead">
+                                <div>
+                                    <h2>Trend signal index</h2>
+                                    <p>Illustrative values · recent periods</p>
+                                </div><select id="chartFilter" class="select">
+                                    <option value="All">All categories</option>
+                                    <option>Watch</option>
+                                    <option>Jewelry</option>
+                                </select>
+                            </div><svg id="chart" class="chart" viewBox="0 0 620 200" preserveAspectRatio="none"></svg>
+                            <div class="sub">━ Watches &nbsp;&nbsp; <span style="color:var(--blue)">━ Fine
+                                    jewelry</span></div>
+                        </div>
+                        <div class="panel">
+                            <div class="panelhead">
+                                <div>
+                                    <h2>Signals to review</h2>
+                                    <p>Based on simulated trend direction</p>
+                                </div><button class="linkbtn" data-goto="signals">All signals →</button>
+                            </div>
+                            <div id="signalList"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panelhead">
+                            <div>
+                                <h2>Featured tracked items</h2>
+                                <p>Click a card to open product details and monitoring options</p>
+                            </div><button class="linkbtn" data-goto="catalog">Browse catalog →</button>
+                        </div>
+                        <div class="grid" id="featured"></div>
+                    </div>
+                </section>
+                <section class="page" id="page-catalog">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Product universe / Luxury collection</div>
+                            <h1>Tracked Items</h1>
+                            <p>Filter by type, trend, or search for a specific brand/model. Every card opens a details
+                                popup.</p>
+                        </div>
+                        <div class="stamp">CURATED CATALOG · DEMO RECORDS</div>
+                    </div>
+                    <div class="toolbar"><input id="search" placeholder="Search name, brand, material…"><select
+                            id="type">
+                            <option value="All">All types</option>
+                            <option value="Watch">Watches</option>
+                            <option value="Jewelry">Fine jewelry</option>
+                        </select><select id="trend">
+                            <option value="All">All trend directions</option>
+                            <option>Rising</option>
+                            <option>Stable</option>
+                            <option>Declining</option>
+                        </select><select id="attention">
+                            <option value="All">All priorities</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select></div>
+                    <div class="chips"><button class="chip active" data-quick="All">All items</button><button
+                            class="chip" data-quick="Watch">Watches</button><button class="chip"
+                            data-quick="Jewelry">Jewelry</button><button class="chip" data-quick="watchlist">Watchlist
+                            only</button></div>
+                    <div class="grid" id="catalog"></div>
+                    <div class="footer">Representative Unsplash photography may not show the exact model. These items
+                        are research examples, not a product shop.</div>
+                </section>
+                <section class="page" id="page-monitoring">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Rules &amp; Signal Engine</div>
+                            <h1>Monitoring Center</h1>
+                            <p>Configure automated threshold rules, track volatility signals, and maintain an active
+                                surveillance matrix across luxury timepieces and fine jewelry.</p>
+                        </div>
+                        <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold"
+                                id="monitorAll">Monitor all items</button><button class="btn" id="monitorTop">★ Add top
+                                priority</button><button class="btn" id="monitorReset"
+                                style="color:var(--red);border-color:#5c2d2d">Reset list</button></div>
+                    </div>
+                    <div class="notice">Simulated surveillance engine: rules, volatility alerts, and trigger thresholds
+                        execute locally. Live deployments connect to verified trade feeds, auction indices, and webhook
+                        dispatchers.</div>
+                    <div class="kpis">
+                        <div class="kpi">
+                            <div class="label">Items monitored</div>
+                            <div class="value" id="monCount">0</div>
+                            <div class="sub">Active surveillance scope</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Rules configured</div>
+                            <div class="value" id="ruleCount">0</div>
+                            <div class="sub">Custom alert triggers</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Triggered signals (24h)</div>
+                            <div class="value positive" id="signalCount">0</div>
+                            <div class="sub">Threshold crossings</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Engine status</div>
+                            <div class="value" style="font-size:20px;display:flex;align-items:center;gap:7px"><span
+                                    class="live-dot"></span> Active</div>
+                            <div class="sub">Simulated telemetry feed</div>
+                        </div>
+                    </div>
+                    <div class="overview" style="margin-bottom:18px">
+                        <div class="panel">
+                            <div class="panelhead">
+                                <div>
+                                    <h2>Active monitoring matrix</h2>
+                                    <p>Real-time threshold assignments and quick rule modifications</p>
+                                </div><span class="stamp" id="monMatrixCount">0 items active</span>
+                            </div>
+                            <div class="tablewrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ITEM</th>
+                                            <th>TYPE</th>
+                                            <th>TREND</th>
+                                            <th>ACTIVE RULE</th>
+                                            <th>STATUS</th>
+                                            <th>ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="monitorTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panelhead">
+                                <div>
+                                    <h2><span class="live-dot" style="margin-right:6px"></span>Alert feed &amp; triggers
+                                    </h2>
+                                    <p>Simulated movement triggers and volume alerts</p>
+                                </div><span class="stamp">LIVE TELEMETRY</span>
+                            </div>
+                            <div id="alertFeedContainer" class="feed-container"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panelhead">
+                            <div>
+                                <h2>Recommended items for monitoring</h2>
+                                <p>High-volatility timepieces and high-liquidity jewelry icons recommended for price and
+                                    sentiment surveillance</p>
+                            </div><button class="linkbtn" data-goto="catalog">Browse full catalog →</button>
+                        </div>
+                        <div class="grid" id="suggestedMonGrid"></div>
+                    </div>
+                </section>
+                <section class="page" id="page-watchlist">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Personal Research Board</div>
+                            <h1>Watchlist &amp; Portfolio Tracker</h1>
+                            <p>Curate custom collections of iconic references, evaluate sentiment momentum, and track
+                                consolidated portfolio valuations.</p>
+                        </div>
+                        <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold"
+                                id="exportWatchlist">Export Watchlist CSV</button><button class="btn" id="clear">Clear
+                                list</button></div>
+                    </div>
+                    <div class="kpis" id="wlKpis">
+                        <div class="kpi">
+                            <div class="label">Saved references</div>
+                            <div class="value" id="wlTotal">0</div>
+                            <div class="sub">Tracked portfolio size</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Timepieces</div>
+                            <div class="value" id="wlWatches">0</div>
+                            <div class="sub">Watches saved</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Fine jewelry</div>
+                            <div class="value" id="wlJewelry">0</div>
+                            <div class="sub">Jewelry saved</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Portfolio avg index</div>
+                            <div class="value" id="wlAvgIndex">—</div>
+                            <div class="sub">Composite trend score</div>
+                        </div>
+                    </div>
+                    <div class="toolbar" style="margin-bottom:14px;align-items:center;justify-content:space-between">
+                        <div class="chips" style="margin:0" id="wlChips"><button class="chip active"
+                                data-wlfilter="All">All saved</button><button class="chip" data-wlfilter="Watch">Watches
+                                only</button><button class="chip" data-wlfilter="Jewelry">Jewelry only</button><button
+                                class="chip" data-wlfilter="Rising">Rising trend</button></div>
+                        <div style="font-size:11px;color:var(--muted)" id="wlCounterText">0 items displayed</div>
+                    </div>
+                    <div class="grid" id="watchGrid"></div>
+                    <div class="panel" style="margin-top:20px">
+                        <div class="panelhead">
+                            <div>
+                                <h2>Spotlight references for your research board</h2>
+                                <p>Leading secondary-market references hand-picked for investment observation and
+                                    benchmark tracking</p>
+                            </div><button class="linkbtn" data-goto="catalog">Browse catalog →</button>
+                        </div>
+                        <div class="grid" id="suggestedWatchGrid"></div>
+                    </div>
+                </section>
+                <section class="page" id="page-signals">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Trend discovery</div>
+                            <h1>Trend Signals</h1>
+                            <p>Illustrative movement classifications across tracked luxury items.</p>
+                        </div>
+                    </div>
+                    <div class="kpis">
+                        <div class="kpi">
+                            <div class="label">Rising</div>
+                            <div class="value positive" id="risingCount">0</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Stable</div>
+                            <div class="value" id="stableCount">0</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Declining</div>
+                            <div class="value negative" id="decliningCount">0</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="label">Method</div>
+                            <div class="value" style="font-size:20px">Demo</div>
+                            <div class="sub">No real calculation</div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panelhead">
+                            <h2>All trend records</h2>
+                        </div>
+                        <div class="tablewrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ITEM</th>
+                                        <th>TYPE</th>
+                                        <th>INDEX</th>
+                                        <th>CHANGE</th>
+                                        <th>MENTIONS</th>
+                                        <th>DIRECTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="signalTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="page" id="page-reports">
+                    <div class="heading">
+                        <div>
+                            <div class="eyebrow">Intelligence &amp; Research Workspace</div>
+                            <h1>Reports &amp; Analyst Notes</h1>
+                            <p>Institutional-grade quarterly market briefs, thematic jewelry reports, and collaborative
+                                research memos for luxury asset allocators.</p>
+                        </div>
+                        <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold"
+                                id="export2">Export Catalog CSV</button><button class="btn" id="exportNotesBtn">Export
+                                Notes (TXT)</button></div>
+                    </div>
+                    <div class="panel" style="margin-bottom:18px">
+                        <div class="panelhead">
+                            <div>
+                                <h2>Executive market reports &amp; quarterly briefs</h2>
+                                <p>Curated analytical dossiers covering secondary price momentum, motif retention, and
+                                    collector migration</p>
+                            </div><span class="stamp">3 DOSSIERS PUBLISHED</span>
+                        </div>
+                        <div class="report-grid" id="reportsDeck"></div>
+                    </div>
+                    <div class="panel" style="margin-bottom:18px">
+                        <div class="panelhead">
+                            <div>
+                                <h2>Reference models featured in current dossiers</h2>
+                                <p>Explore the specific horological and jewelry references analyzed in our latest market
+                                    reports</p>
+                            </div><button class="linkbtn" data-goto="catalog">Explore catalog →</button>
+                        </div>
+                        <div class="grid" id="reportFeaturedItems"></div>
+                    </div>
+                    <div class="overview">
+                        <div class="panel">
+                            <div class="panelhead">
+                                <div>
+                                    <h2>Analyst research notes &amp; memos</h2>
+                                    <p>Record qualitative findings, auction insights, and thesis notes</p>
+                                </div><span class="stamp" id="notesCountBadge">3 memos saved</span>
+                            </div>
+                            <form id="noteForm" class="note-form" style="margin-bottom:16px">
+                                <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:8px"><input
+                                        id="noteTitle" placeholder="Memo title (e.g. Geneva auction preview)..."
+                                        required
+                                        style="border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 11px;border-radius:8px"><select
+                                        id="noteCat"
+                                        style="border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 11px;border-radius:8px">
+                                        <option value="Watches">Watches</option>
+                                        <option value="Fine Jewelry">Fine Jewelry</option>
+                                        <option value="Market Outlook">Market Outlook</option>
+                                        <option value="Materials">Materials &amp; Gemstones</option>
+                                    </select></div><textarea id="noteContent" rows="3"
+                                    placeholder="Enter key observations, secondary price indications, collector sentiment notes..."
+                                    required
+                                    style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px;border-radius:8px;font-family:inherit;font-size:12px;resize:vertical;margin-bottom:8px"></textarea>
+                                <div style="display:flex;justify-content:flex-end"><button type="submit"
+                                        class="btn gold" style="padding:7px 15px;font-size:11px;font-weight:700">+ Save
+                                        research memo</button></div>
+                            </form>
+                            <div id="notesDeck" class="notes-deck"></div>
+                        </div>
+                        <div class="panel">
+                            <h2>Research quality &amp; compliance framework</h2>
+                            <p class="muted" style="margin-bottom:14px;line-height:1.6">Institutional reports synthesize
+                                secondary dealer listing spreads, verified public auction results (Geneva, Hong Kong,
+                                New York), and digital mention velocity to formulate market momentum scores.</p>
+                            <div
+                                style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:10px">
+                                <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:4px">DATA
+                                    GOVERNANCE</div>
+                                <div style="font-size:11px;color:#c0cad2">Pricing points reflect mid-market estimates
+                                    derived from multi-platform aggregates. Outlier bids and distress sales are
+                                    normalized.</div>
+                            </div>
+                            <div
+                                style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:16px">
+                                <div style="font-size:11px;color:var(--green);font-weight:600;margin-bottom:4px">UPDATE
+                                    CADENCE</div>
+                                <div style="font-size:11px;color:#c0cad2">Secondary market sentiment recalculated
+                                    weekly. Thematic dossiers published at the beginning of each fiscal quarter.</div>
+                            </div>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn"
+                                    id="exportSignalsCSV">Export Trend Signals CSV</button></div>
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:22px;padding:16px 20px;background:#181313;border:1px solid #4d2626;border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+                        <div>
+                            <div style="font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase">
+                                Active Analyst Session</div>
+                            <div style="font-size:13px;color:var(--text);font-weight:600">
+                                <span id="reportsUserName">Analyst</span> &nbsp;·&nbsp; <span id="reportsUserEmail" style="color:var(--gold);font-weight:500">analyst@maison.internal</span>
+                            </div>
+                        </div><button id="reportsLogoutBtn" class="btn"
+                            style="color:#ef8b8b;border-color:#5c2d2d;background:#241616;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px"><span>⎋</span>
+                            Logout &amp; Terminate Session</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="modalback" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <button class="close" id="close" aria-label="Close modal">×</button>
+            <div class="modalgrid">
+                <div class="modalphoto">
+                    <img id="modalImg" alt="">
+                    <div class="modalphoto-overlay"></div>
+                    <span class="modalphoto-badge" id="modalPhotoBadge">HIGH ATTENTION</span>
+                </div>
+                <div class="modalbody">
+                    <div class="eyebrow" id="modalTag">ITEM PROFILE</div>
+                    <h2 id="modalTitle"></h2>
+                    <div class="muted" id="modalSubtitle"></div>
+                    <div class="details" id="details"></div>
+                    <div class="section">
+                        <h3><span style="color:var(--gold)">✦</span> Monitoring Focus</h3>
+                        <p id="focus"></p>
+                    </div>
+                    <div class="section">
+                        <h3><span style="color:var(--gold)">⚡</span> Algorithmic Signal Summary</h3>
+                        <p id="summary"></p>
+                    </div>
+                    <div class="section">
+                        <h3><span style="color:var(--gold)">⚙</span> Monitoring Rule</h3>
+                        <p>Evaluate live market activity against custom alert thresholds:</p>
+                        <div class="toolbar" style="margin-top:10px">
+                            <select id="rule" style="width:100%;background:rgba(22,28,35,0.85);border:1px solid rgba(215,183,122,0.25);color:var(--text);border-radius:8px;padding:9px 12px;font-size:12px">
+                                <option value="5">Alert on change of 5% or more</option>
+                                <option value="10">Alert on change of 10% or more</option>
+                                <option value="15">Alert on change of 15% or more</option>
+                                <option value="news">New brand/news signal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modalactions">
+                        <button class="btn gold" id="toggle" style="flex:1;min-width:170px">☆ Add to watchlist</button>
+                        <button class="btn" id="close2">Close details</button>
+                    </div>
+                    <div class="footer">Illustrative record · Private advisory intelligence · Not verified retail valuation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalback" id="reportBackdrop" role="dialog" aria-modal="true" aria-labelledby="repModalTitle">
+        <div class="modal report-modal">
+            <button class="close" id="closeReport" aria-label="Close report brief">×</button>
+            <div class="report-modal-scroll">
+                <div class="eyebrow" id="repModalBadge" style="margin-bottom:6px">EXECUTIVE BRIEF</div>
+                <h2 id="repModalTitle" style="font:500 24px/1.2 Georgia;margin:0 0 8px;color:var(--gold)"></h2>
+                <div class="muted" id="repModalMeta" style="margin-bottom:14px;font-size:12px"></div>
+
+                <div class="report-stats-grid" id="repModalStats"></div>
+
+                <div class="section" style="padding-top:12px">
+                    <h3 style="color:var(--text);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 7px">
+                        Executive Summary
+                    </h3>
+                    <div class="report-summary-box" id="repModalSummary"></div>
+                </div>
+
+                <div class="section">
+                    <h3 style="color:var(--text);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 7px">
+                        Key Takeaways &amp; Strategic Findings
+                    </h3>
+                    <ul class="takeaway-list" id="repModalTakeaways"></ul>
+                </div>
+
+                <div class="section">
+                    <h3 style="color:var(--text);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 7px">
+                        Highlighted Reference Pieces
+                    </h3>
+                    <div id="repModalItems" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"></div>
+                </div>
+
+                <div class="modalactions" style="margin-top:24px;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+                    <button type="button" class="btn" id="exportBriefBtn" style="font-size:11.5px;display:flex;align-items:center;gap:6px"><span>⬇</span> Download Brief Memo</button>
+                    <button type="button" class="btn gold" id="closeReport2">Close Brief</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalback" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+        <div class="modal admin-modal">
+            <button class="close" id="closeAdminModal" aria-label="Close admin access modal">×</button>
+            <div class="admin-modal-scroll">
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+                    <div class="admin-badge-icon">🛡</div>
+                    <div>
+                        <div class="eyebrow" style="color:var(--gold);font-size:10px;letter-spacing:.15em">
+                            ADMINISTRATIVE ACCESS
+                        </div>
+                        <h2 id="adminModalTitle" style="font:500 22px Georgia;margin:3px 0 0;color:var(--text)">
+                            User Capacity Exceeded
+                        </h2>
+                    </div>
+                </div>
+
+                <div id="adminModalNotice" class="admin-alert-banner warning">
+                    <b>Alert:</b> User capacity limit reached (<span id="adminModalCount">10</span> / <span id="adminModalLimit">10</span> users). How many users do you want to increase?
+                </div>
+
+                <form id="adminCapacityForm" novalidate>
+                    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:16px">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px">
+                            <span style="color:var(--muted)">Current Registered Users:</span>
+                            <b id="adminStatUsers" style="color:var(--text)">10</b>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px">
+                            <span style="color:var(--muted)">Total User Capacity:</span>
+                            <b id="adminStatLimit" style="color:var(--gold)">10 users max</b>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;padding-top:8px;border-top:1px dashed var(--line)">
+                            <span style="color:var(--muted)">Projected Total Capacity:</span>
+                            <b id="adminStatProjected" style="color:var(--green)">15 users max</b>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px">
+                        <label style="display:block;font-size:11px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-weight:600" for="increaseCountInput">
+                            How many users do you want to increase?
+                        </label>
+                        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                            <input type="number" id="increaseCountInput" min="1" max="500" value="5" required
+                                style="width:105px;padding:10px 12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;font-size:15px;font-weight:700">
+                            <div style="display:flex;gap:6px" id="quickIncChips">
+                                <button type="button" class="inc-chip active" id="btnInc5">+5</button>
+                                <button type="button" class="inc-chip" id="btnInc10">+10</button>
+                                <button type="button" class="inc-chip" id="btnInc25">+25</button>
+                                <button type="button" class="inc-chip" id="btnInc50">+50</button>
+                            </div>
+                        </div>
+                        <small style="display:block;color:var(--muted);font-size:10.5px;margin-top:6px">Select or enter the count of additional analyst accounts to authorize.</small>
+                    </div>
+
+                    <div style="margin-bottom:18px">
+                        <label style="display:block;font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;font-weight:600" for="adminPasscode">
+                            Admin Authorization Passcode
+                        </label>
+                        <input type="password" id="adminPasscode" placeholder="Enter admin passcode" value="admin" required
+                            style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 13px;border-radius:8px;font-size:13px">
+                        <small style="display:block;color:#7e8b96;font-size:10.5px;margin-top:5px">For demonstration verification, default passcode is <code style="color:var(--gold);background:#1e1a12;padding:2px 5px;border-radius:3px">admin</code>.</small>
+                    </div>
+
+                    <div id="adminFormError" style="display:none;padding:8px 12px;background:#2e1515;border:1px solid #783535;border-radius:6px;color:#fca5a5;font-size:11.5px;margin-bottom:14px"></div>
+
+                    <div style="display:flex;gap:10px;justify-content:flex-end">
+                        <button type="button" class="btn" id="cancelAdminBtn">Cancel</button>
+                        <button type="submit" class="btn gold" id="confirmAdminBtn" style="font-weight:700;padding:11px 20px">Confirm &amp; Increase Capacity</button>
+                    </div>
+                </form>
+
+                <div style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px">
+                    <button type="button" class="linkbtn" id="toggleUserListBtn" style="font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer">
+                        <span id="userListArrow">▸</span> View registered users (<span id="adminListCount">10</span>)
+                    </button>
+                    <div id="adminUserListWrap" style="display:none;margin-top:10px;max-height:140px;overflow-y:auto;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalback" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle" style="z-index:1250">
+        <div class="modal" style="width:min(620px,100%);max-height:min(90vh,700px)">
+            <button class="close" id="closeTermsModal" aria-label="Close Terms &amp; Conditions">×</button>
+            <div style="padding:28px 32px;overflow-y:auto">
+                <div class="eyebrow" style="color:var(--gold);font-size:10px;letter-spacing:.15em;margin-bottom:4px">MAISON PLATFORM CHARTER</div>
+                <h2 id="termsModalTitle" style="font:500 22px Georgia, serif;margin:0 0 14px;color:var(--text)">Terms &amp; Conditions</h2>
+                
+                <div style="display:flex;flex-direction:column;gap:12px;font-size:11.5px;color:#c0cad2;line-height:1.6">
+                    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px">
+                        <b style="color:var(--gold);display:block;margin-bottom:4px">1. Intelligence &amp; Market Research Scope</b>
+                        All analytics, volatility scores, and price trend indices provided by MAISON are for market research and advisory evaluation purposes only. Secondary market price ranges represent aggregated institutional estimates.
+                    </div>
+                    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px">
+                        <b style="color:var(--gold);display:block;margin-bottom:4px">2. Analyst Account Access &amp; Security</b>
+                        Analyst access credentials and custom watchlist rules are managed locally within your authorized session. Account holders agree to maintain confidentiality of proprietary research notes and exported dossier briefs.
+                    </div>
+                    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px">
+                        <b style="color:var(--gold);display:block;margin-bottom:4px">3. Data Privacy &amp; Local Storage</b>
+                        Account identifiers and preferences are stored locally in secure client storage to maintain analyst persistence without external third-party telemetry tracking.
+                    </div>
+                </div>
+
+                <div class="modalactions" style="margin-top:20px;display:flex;justify-content:flex-end;gap:10px">
+                    <button type="button" class="btn" id="closeTermsModalBtn">Close</button>
+                    <button type="button" class="btn gold" id="acceptTermsBtn" style="font-weight:700">Accept &amp; Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalback" id="forgotPasswordModal" role="dialog" aria-modal="true" aria-labelledby="forgotModalTitle" style="z-index:1260">
+        <div class="modal" style="width:min(480px,100%)">
+            <button class="close" id="closeForgotModal" aria-label="Close password recovery">×</button>
+            <div style="padding:26px 28px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+                    <div style="width:38px;height:38px;border-radius:50%;background:rgba(215,183,122,0.12);border:1px solid var(--gold);display:grid;place-items:center;font-size:18px;color:var(--gold);flex-shrink:0">🔑</div>
+                    <div>
+                        <div class="eyebrow" style="color:var(--gold);font-size:10px;letter-spacing:.15em;margin-bottom:2px">ACCOUNT RECOVERY</div>
+                        <h2 id="forgotModalTitle" style="font:500 21px Georgia, serif;margin:0;color:var(--text)">Reset Password</h2>
+                    </div>
+                </div>
+                <p style="color:var(--muted);font-size:12px;line-height:1.5;margin:0 0 16px">
+                    Enter your registered email address below. We'll verify your analyst account and provide recovery instructions.
+                </p>
+
+                <form id="forgotPasswordForm" novalidate>
+                    <div style="margin-bottom:14px;text-align:left">
+                        <label style="display:block;font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:5px" for="forgotEmailInput">Email Address</label>
+                        <input type="email" id="forgotEmailInput" placeholder="analyst@maison.internal or admin@gmail.com" required
+                            style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 12px;border-radius:8px;font-size:13px">
+                    </div>
+
+                    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:16px;font-size:11px;color:#c0cad2;line-height:1.5">
+                        <span style="color:var(--gold);font-weight:600">Default Administrator Credentials:</span><br>
+                        Email: <code style="color:var(--text)">admin@gmail.com</code> &nbsp;·&nbsp; Password: <code style="color:var(--gold)">Admin@123</code>
+                    </div>
+
+                    <div id="forgotEmailError" style="display:none;padding:8px 12px;background:#2e1515;border:1px solid #783535;border-radius:6px;color:#fca5a5;font-size:11.5px;margin-bottom:14px"></div>
+                    <div id="forgotEmailSuccess" style="display:none;padding:10px 12px;background:#14251a;border:1px solid #3d6c4e;border-radius:6px;color:#a2e8bc;font-size:11.5px;margin-bottom:14px;line-height:1.45"></div>
+
+                    <div style="display:flex;gap:10px;justify-content:flex-end">
+                        <button type="button" class="btn" id="cancelForgotBtn">Cancel</button>
+                        <button type="submit" class="btn gold" id="submitForgotBtn" style="font-weight:700;padding:9px 18px">Send Recovery Link</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <script>
+        const ITEMS = [{ "id": "W001", "name": "Rolex Submariner Date", "brand": "Rolex", "type": "Watch", "category": "Dive watch", "material": "Steel / black", "price": "$10k–$15k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=82", "index": 54, "change": -3.5, "mentions": 95, "focus": "Monitor dive watch interest, brand activity, and price movement." }, { "id": "W002", "name": "Rolex Cosmograph Daytona", "brand": "Rolex", "type": "Watch", "category": "Chronograph", "material": "Steel / black", "price": "$15k–$30k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 0.0, "mentions": 142, "focus": "Monitor chronograph interest, brand activity, and price movement." }, { "id": "W003", "name": "Rolex Datejust 41", "brand": "Rolex", "type": "Watch", "category": "Classic", "material": "Steel / blue", "price": "$8k–$13k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=82", "index": 80, "change": 3.5, "mentions": 189, "focus": "Monitor classic interest, brand activity, and price movement." }, { "id": "W004", "name": "Patek Philippe Nautilus", "brand": "Patek Philippe", "type": "Watch", "category": "Sport luxury", "material": "Steel / blue", "price": "$60k–$120k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=700&q=82", "index": 54, "change": -2.5, "mentions": 236, "focus": "Monitor sport luxury interest, brand activity, and price movement." }, { "id": "W005", "name": "Patek Philippe Calatrava", "brand": "Patek Philippe", "type": "Watch", "category": "Dress watch", "material": "White gold / silver", "price": "$25k–$45k", "trend": "Stable", "attention": "High", "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 1.0, "mentions": 283, "focus": "Monitor dress watch interest, brand activity, and price movement." }, { "id": "W006", "name": "Audemars Piguet Royal Oak", "brand": "Audemars Piguet", "type": "Watch", "category": "Sport luxury", "material": "Steel / blue", "price": "$30k–$80k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=700&q=82", "index": 80, "change": 4.5, "mentions": 330, "focus": "Monitor sport luxury interest, brand activity, and price movement." }, { "id": "W007", "name": "Omega Speedmaster Moonwatch", "brand": "Omega", "type": "Watch", "category": "Chronograph", "material": "Steel / black", "price": "$6k–$12k", "trend": "Stable", "attention": "Low", "image": "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=700&q=82", "index": 54, "change": -1.5, "mentions": 377, "focus": "Monitor chronograph interest, brand activity, and price movement." }, { "id": "W008", "name": "Cartier Tank Louis Cartier", "brand": "Cartier", "type": "Watch", "category": "Dress watch", "material": "Yellow gold / leather", "price": "$10k–$25k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1619134778706-7015533a6150?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 2.0, "mentions": 424, "focus": "Monitor dress watch interest, brand activity, and price movement." }, { "id": "W009", "name": "Cartier Santos de Cartier", "brand": "Cartier", "type": "Watch", "category": "Sport luxury", "material": "Steel / silver", "price": "$6k–$12k", "trend": "Stable", "attention": "High", "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=82", "index": 80, "change": 5.5, "mentions": 471, "focus": "Monitor sport luxury interest, brand activity, and price movement." }, { "id": "W010", "name": "Jaeger-LeCoultre Reverso", "brand": "Jaeger-LeCoultre", "type": "Watch", "category": "Dress watch", "material": "Steel / silver", "price": "$7k–$20k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=700&q=82", "index": 54, "change": -0.5, "mentions": 518, "focus": "Monitor dress watch interest, brand activity, and price movement." }, { "id": "W011", "name": "IWC Portugieser Chronograph", "brand": "IWC", "type": "Watch", "category": "Chronograph", "material": "Steel / blue", "price": "$7k–$12k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 3.0, "mentions": 565, "focus": "Monitor chronograph interest, brand activity, and price movement." }, { "id": "W012", "name": "Vacheron Constantin Overseas", "brand": "Vacheron Constantin", "type": "Watch", "category": "Sport luxury", "material": "Steel / blue", "price": "$25k–$60k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=700&q=82", "index": 80, "change": -3.0, "mentions": 612, "focus": "Monitor sport luxury interest, brand activity, and price movement." }, { "id": "W013", "name": "Grand Seiko Snowflake", "brand": "Grand Seiko", "type": "Watch", "category": "Everyday luxury", "material": "Titanium / white", "price": "$5k–$8k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=82", "index": 54, "change": 0.5, "mentions": 659, "focus": "Monitor everyday luxury interest, brand activity, and price movement." }, { "id": "W014", "name": "TAG Heuer Monaco", "brand": "TAG Heuer", "type": "Watch", "category": "Chronograph", "material": "Steel / blue", "price": "$6k–$12k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 4.0, "mentions": 706, "focus": "Monitor chronograph interest, brand activity, and price movement." }, { "id": "W015", "name": "Breitling Navitimer", "brand": "Breitling", "type": "Watch", "category": "Pilot chronograph", "material": "Steel / black", "price": "$6k–$11k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=82", "index": 80, "change": -2.0, "mentions": 753, "focus": "Monitor pilot chronograph interest, brand activity, and price movement." }, { "id": "W016", "name": "Hublot Big Bang Unico", "brand": "Hublot", "type": "Watch", "category": "Sport chronograph", "material": "Ceramic / black", "price": "$15k–$30k", "trend": "Declining", "attention": "Low", "image": "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=700&q=82", "index": 54, "change": 1.5, "mentions": 100, "focus": "Monitor sport chronograph interest, brand activity, and price movement." }, { "id": "W017", "name": "Richard Mille RM 11-03", "brand": "Richard Mille", "type": "Watch", "category": "High complication", "material": "Carbon / skeleton", "price": "$200k–$350k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=700&q=82", "index": 67, "change": 5.0, "mentions": 147, "focus": "Monitor high complication interest, brand activity, and price movement." }, { "id": "W018", "name": "A. Lange & Söhne Lange 1", "brand": "A. Lange & Söhne", "type": "Watch", "category": "Dress watch", "material": "Rose gold / silver", "price": "$35k–$70k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1619134778706-7015533a6150?auto=format&fit=crop&w=700&q=82", "index": 80, "change": -1.0, "mentions": 194, "focus": "Monitor dress watch interest, brand activity, and price movement." }, { "id": "W019", "name": "Panerai Luminor Marina", "brand": "Panerai", "type": "Watch", "category": "Dive / tool watch", "material": "Steel / black", "price": "$6k–$10k", "trend": "Declining", "attention": "Low", "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=82", "index": 54, "change": 2.5, "mentions": 241, "focus": "Monitor dive / tool watch interest, brand activity, and price movement." }, { "id": "W020", "name": "Tudor Black Bay 58", "brand": "Tudor", "type": "Watch", "category": "Dive watch", "material": "Steel / black", "price": "$3k–$6k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=700&q=82", "index": 67, "change": -3.5, "mentions": 288, "focus": "Monitor dive watch interest, brand activity, and price movement." }, { "id": "J001", "name": "Cartier LOVE Bracelet", "brand": "Cartier", "type": "Jewelry", "category": "Bracelet", "material": "Yellow gold", "price": "$7k–$12k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 51, "change": -3.0, "mentions": 110, "focus": "Monitor bracelet demand, material/design trends, and relevant brand announcements." }, { "id": "J002", "name": "Cartier Juste un Clou Bracelet", "brand": "Cartier", "type": "Jewelry", "category": "Bracelet", "material": "Yellow gold", "price": "$8k–$15k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 62, "change": -0.5, "mentions": 151, "focus": "Monitor bracelet demand, material/design trends, and relevant brand announcements." }, { "id": "J003", "name": "Tiffany T Wire Bracelet", "brand": "Tiffany & Co.", "type": "Jewelry", "category": "Bracelet", "material": "Rose gold", "price": "$2k–$5k", "trend": "Stable", "attention": "Low", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 73, "change": 2.0, "mentions": 192, "focus": "Monitor bracelet demand, material/design trends, and relevant brand announcements." }, { "id": "J004", "name": "Van Cleef & Arpels Alhambra Necklace", "brand": "Van Cleef & Arpels", "type": "Jewelry", "category": "Necklace", "material": "Gold / mother-of-pearl", "price": "$4k–$12k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 84, "change": 4.5, "mentions": 233, "focus": "Monitor necklace demand, material/design trends, and relevant brand announcements." }, { "id": "J005", "name": "Bvlgari Serpenti Necklace", "brand": "Bvlgari", "type": "Jewelry", "category": "Necklace", "material": "Rose gold / diamonds", "price": "$10k–$35k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 51, "change": -1.5, "mentions": 274, "focus": "Monitor necklace demand, material/design trends, and relevant brand announcements." }, { "id": "J006", "name": "Harry Winston Diamond Stud Earrings", "brand": "Harry Winston", "type": "Jewelry", "category": "Earrings", "material": "Platinum / diamonds", "price": "$10k–$50k", "trend": "Stable", "attention": "High", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 62, "change": 1.0, "mentions": 315, "focus": "Monitor earrings demand, material/design trends, and relevant brand announcements." }, { "id": "J007", "name": "Graff Diamond Engagement Ring", "brand": "Graff", "type": "Jewelry", "category": "Ring", "material": "Platinum / diamond", "price": "$20k–$200k+", "trend": "Stable", "attention": "Low", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 73, "change": 3.5, "mentions": 356, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J008", "name": "Chopard Happy Diamonds Pendant", "brand": "Chopard", "type": "Jewelry", "category": "Pendant", "material": "White gold / diamonds", "price": "$3k–$10k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 84, "change": -2.5, "mentions": 397, "focus": "Monitor pendant demand, material/design trends, and relevant brand announcements." }, { "id": "J009", "name": "Boucheron Quatre Ring", "brand": "Boucheron", "type": "Jewelry", "category": "Ring", "material": "Gold / ceramic", "price": "$3k–$8k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 51, "change": 0.0, "mentions": 438, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J010", "name": "Piaget Possession Ring", "brand": "Piaget", "type": "Jewelry", "category": "Ring", "material": "Rose gold / diamonds", "price": "$2k–$7k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 62, "change": 2.5, "mentions": 479, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J011", "name": "Buccellati Macri Cuff Bracelet", "brand": "Buccellati", "type": "Jewelry", "category": "Bracelet", "material": "Yellow gold", "price": "$8k–$25k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 73, "change": 5.0, "mentions": 520, "focus": "Monitor bracelet demand, material/design trends, and relevant brand announcements." }, { "id": "J012", "name": "Repossi Serti sur Vide Ring", "brand": "Repossi", "type": "Jewelry", "category": "Ring", "material": "White gold / diamonds", "price": "$5k–$20k", "trend": "Rising", "attention": "Medium", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 84, "change": -1.0, "mentions": 561, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J013", "name": "Messika Move Uno Necklace", "brand": "Messika", "type": "Jewelry", "category": "Necklace", "material": "White gold / diamonds", "price": "$2k–$8k", "trend": "Stable", "attention": "Low", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 51, "change": 1.5, "mentions": 602, "focus": "Monitor necklace demand, material/design trends, and relevant brand announcements." }, { "id": "J014", "name": "De Beers Enchanted Lotus Pendant", "brand": "De Beers", "type": "Jewelry", "category": "Pendant", "material": "White gold / diamonds", "price": "$3k–$15k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 62, "change": 4.0, "mentions": 643, "focus": "Monitor pendant demand, material/design trends, and relevant brand announcements." }, { "id": "J015", "name": "Mikimoto Akoya Pearl Necklace", "brand": "Mikimoto", "type": "Jewelry", "category": "Necklace", "material": "Akoya pearls / gold", "price": "$3k–$20k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 73, "change": -2.0, "mentions": 684, "focus": "Monitor necklace demand, material/design trends, and relevant brand announcements." }, { "id": "J016", "name": "Tasaki Balance Signature Earrings", "brand": "Tasaki", "type": "Jewelry", "category": "Earrings", "material": "Pearls / gold", "price": "$3k–$10k", "trend": "Rising", "attention": "High", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 84, "change": 0.5, "mentions": 725, "focus": "Monitor earrings demand, material/design trends, and relevant brand announcements." }, { "id": "J017", "name": "Pomellato Nudo Ring", "brand": "Pomellato", "type": "Jewelry", "category": "Ring", "material": "Rose gold / colored stone", "price": "$2k–$8k", "trend": "Stable", "attention": "Low", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 51, "change": 3.0, "mentions": 116, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J018", "name": "Dior Rose des Vents Necklace", "brand": "Dior Joaillerie", "type": "Jewelry", "category": "Necklace", "material": "Yellow gold / diamond", "price": "$2k–$8k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=82", "index": 62, "change": -3.0, "mentions": 157, "focus": "Monitor necklace demand, material/design trends, and relevant brand announcements." }, { "id": "J019", "name": "Chanel Coco Crush Ring", "brand": "Chanel", "type": "Jewelry", "category": "Ring", "material": "Beige gold", "price": "$3k–$10k", "trend": "Rising", "attention": "Low", "image": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=82", "index": 73, "change": -0.5, "mentions": 198, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }, { "id": "J020", "name": "Bvlgari B.zero1 Ring", "brand": "Bvlgari", "type": "Jewelry", "category": "Ring", "material": "Rose gold", "price": "$2k–$8k", "trend": "Stable", "attention": "Medium", "image": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=82", "index": 84, "change": 2.0, "mentions": 239, "focus": "Monitor ring demand, material/design trends, and relevant brand announcements." }]; const watch = new Set(), rules = new Map(); let current = null, quick = 'All';
+        const $ = id => document.getElementById(id), esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const trendClass = t => t.toLowerCase();
+        function card(x) { return `<article class="card" data-open="${x.id}" tabindex="0"><div class="photo"><img loading="lazy" src="${x.image}" alt="${esc(x.name)} representative image" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=80'"><span class="tag">${x.type}</span><button class="star ${watch.has(x.id) ? 'on' : ''}" data-star="${x.id}" aria-label="Toggle watchlist">${watch.has(x.id) ? '★' : '☆'}</button></div><div class="cardbody"><div class="brandname">${esc(x.brand)}</div><h3>${esc(x.name)}</h3><div class="meta">${esc(x.category)} · ${esc(x.material)}</div><div class="cardfoot"><span class="price">${esc(x.price)}</span><span class="${x.trend === 'Rising' ? 'positive' : x.trend === 'Declining' ? 'negative' : ''}">${x.trend === 'Rising' ? '↗' : x.trend === 'Declining' ? '↘' : '→'} ${x.trend}</span></div></div></article>` }
+        function filtered() { let a = [...ITEMS], s = ($('search')?.value || $('globalSearch').value || '').toLowerCase(); let t = $('type')?.value || 'All', tr = $('trend')?.value || 'All', at = $('attention')?.value || 'All'; if (s) a = a.filter(x => (x.name + ' ' + x.brand + ' ' + x.category + ' ' + x.material).toLowerCase().includes(s)); if (t !== 'All') a = a.filter(x => x.type === t); if (tr !== 'All') a = a.filter(x => x.trend === tr); if (at !== 'All') a = a.filter(x => x.attention === at); if (quick === 'Watch' || quick === 'Jewelry') a = a.filter(x => x.type === quick); if (quick === 'watchlist') a = a.filter(x => watch.has(x.id)); return a }
+        function renderGrid(id, a) { $(id).innerHTML = a.length ? a.map(card).join('') : '<div class="empty">No items match this filter.</div>'; attach() }
+        function syncBodyScroll() {
+            let hasOpenModal = document.querySelector('.modalback.open');
+            let isAuthActive = !document.documentElement.classList.contains('user-authed');
+            if (hasOpenModal || isAuthActive) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function showToast(msg, type = 'info') {
+            let container = $('toastContainer');
+            if (!container) return;
+            let toast = document.createElement('div');
+            toast.className = 'maison-toast ' + type;
+            let icon = type === 'success' ? '✓' : type === 'warning' ? '⚠' : 'ℹ';
+            toast.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-msg">${esc(msg)}</span><button class="toast-close" aria-label="Dismiss">×</button>`;
+            container.appendChild(toast);
+            toast.querySelector('.toast-close').onclick = () => { toast.remove(); };
+            setTimeout(() => {
+                toast.classList.add('fade-out');
+                setTimeout(() => toast.remove(), 320);
+            }, 3800);
+        }
+
+        function attach() { document.querySelectorAll('[data-open]').forEach(el => { if (el.dataset.bound) return; el.dataset.bound = '1'; el.addEventListener('click', e => { if (e.target.closest('[data-star]')) return; openItem(el.dataset.open) }); el.addEventListener('keydown', e => { if (e.key === 'Enter') { openItem(el.dataset.open) } }) }); document.querySelectorAll('[data-star]').forEach(el => { if (el.dataset.bound) return; el.dataset.bound = '1'; el.addEventListener('click', e => { e.stopPropagation(); toggle(el.dataset.star) }) }) }
+        function openItem(id) {
+            current = ITEMS.find(x => x.id === id);
+            if (!current) return;
+            if ($('reportBackdrop')?.classList.contains('open')) {
+                closeReportModal();
+            }
+            $('modalImg').src = current.image;
+            $('modalImg').alt = current.name + ' representative image';
+            $('modalTag').textContent = current.type.toUpperCase() + ' PROFILE · ' + current.id;
+            if ($('modalPhotoBadge')) $('modalPhotoBadge').textContent = current.attention.toUpperCase() + ' ATTENTION';
+            $('modalTitle').textContent = current.name;
+            $('modalSubtitle').textContent = current.brand + ' · ' + current.category + ' · ' + current.material;
+            $('details').innerHTML = `
+                <div class="detail"><small>Indicative Valuation</small><b>${esc(current.price)}</b></div>
+                <div class="detail"><small>Trend Momentum</small><b style="color:var(--gold)">${current.index}/100</b></div>
+                <div class="detail"><small>Trajectory Direction</small><b class="${current.trend === 'Rising' ? 'positive' : current.trend === 'Declining' ? 'negative' : ''}">${current.trend === 'Rising' ? '↗' : current.trend === 'Declining' ? '↘' : '→'} ${current.trend}</b></div>
+                <div class="detail"><small>Monitoring Priority</small><b>${current.attention}</b></div>
+                <div class="detail"><small>Quarterly Variance</small><b class="${current.change >= 0 ? 'positive' : 'negative'}">${current.change > 0 ? '+' : ''}${current.change}%</b></div>
+                <div class="detail"><small>Analyzed Citations</small><b>${current.mentions.toLocaleString()} mentions</b></div>
+            `;
+            $('focus').textContent = current.focus;
+            $('summary').textContent = `Classified as ${current.trend.toLowerCase()} trajectory with trend score ${current.index}/100 across ${current.mentions.toLocaleString()} market data citations. Evaluated by Maison algorithmic intelligence.`;
+            $('toggle').textContent = watch.has(id) ? '★ Remove from watchlist' : '☆ Add to watchlist';
+            $('rule').value = rules.get(id) || '5';
+            $('backdrop').classList.add('open');
+            syncBodyScroll();
+        }
+        function closeModal() { $('backdrop').classList.remove('open'); current = null; syncBodyScroll(); }
+        function toggle(id) {
+            let item = ITEMS.find(x => x.id === id);
+            let itemName = item ? item.name : 'Item';
+            if (watch.has(id)) {
+                watch.delete(id);
+                showToast(`${itemName} removed from watchlist.`, 'info');
+            } else {
+                watch.add(id);
+                showToast(`${itemName} added to watchlist.`, 'success');
+            }
+            renderAll();
+            if (current && current.id === id) $('toggle').textContent = watch.has(id) ? '★ Remove from watchlist' : '☆ Add to watchlist';
+        }
+        function goto(p) { document.querySelectorAll('.page').forEach(x => x.classList.toggle('active', x.id === 'page-' + p)); document.querySelectorAll('[data-page]').forEach(x => x.classList.toggle('active', x.dataset.page === p)); if ($('crumb')) $('crumb').textContent = ({ overview: 'Overview', catalog: 'Tracked items', monitoring: 'Monitoring', watchlist: 'Watchlist', signals: 'Trend signals', reports: 'Reports & notes' })[p]; window.scrollTo(0, 0) }
+        const REPORTS = [
+            {
+                id: "REP-01",
+                title: "Q4 Haute Horlogerie Market Momentum & Liquidity",
+                category: "Watch Intelligence",
+                date: "October 2026",
+                readTime: "6 min read",
+                badge: "Quarterly Dossier",
+                summary: "Detailed secondary market trajectory across Rolex, Patek Philippe, and Audemars Piguet sport models with auction premiums and liquidity velocity.",
+                stats: [{ l: "QoQ Index", v: "+4.8%" }, { l: "Leading Segment", v: "Sport Luxury" }, { l: "Sample Velocity", v: "140+ obs" }],
+                takeaways: [
+                    "Steel sports chronographs demonstrate price stabilization following previous quarters of consolidation.",
+                    "Vintage and neo-vintage references are outperforming contemporary catalog models in collector auction bidding velocity.",
+                    "Integrated bracelet luxury sport timepieces retain the highest liquidity among secondary market dealers."
+                ],
+                items: ["W001", "W002", "W004", "W006"]
+            },
+            {
+                id: "REP-02",
+                title: "Fine Jewelry Iconography: The Resurgence of Gold & Motifs",
+                category: "Jewelry Intelligence",
+                date: "October 2026",
+                readTime: "5 min read",
+                badge: "Thematic Study",
+                summary: "Comprehensive evaluation of brand signature motifs including Cartier LOVE, Van Cleef Alhambra, and Bvlgari Serpenti amidst rising gold market spot rates.",
+                stats: [{ l: "Demand Momentum", v: "+7.2%" }, { l: "Leading Metal", v: "18k Yellow Gold" }, { l: "Icon Retention", v: "94% stability" }],
+                takeaways: [
+                    "Instant brand recognition motifs continue to outpace non-branded diamond jewelry in secondary market value retention.",
+                    "Consumer appetite is tilting decisively towards solid yellow and warm rose gold alloys.",
+                    "Layerable and modular cuff bracelets have shown double-digit growth in search velocity across international luxury centers."
+                ],
+                items: ["J001", "J004", "J005", "J011"]
+            },
+            {
+                id: "REP-03",
+                title: "Independent Maisons & High Complication Collector Shift",
+                category: "Independent Horology",
+                date: "October 2026",
+                readTime: "7 min read",
+                badge: "Collector Radar",
+                summary: "Tracking collector capital rotation into Richard Mille, A. Lange & Söhne, and artisan complication watchmaking with extreme scarcity dynamics.",
+                stats: [{ l: "Attention Index", v: "76/100" }, { l: "Allocation Waitlist", v: "Extended" }, { l: "Volume Profile", v: "Ultra-Low/High-Val" }],
+                takeaways: [
+                    "High-net-worth collectors are prioritizing hand-finished German and Swiss artisanal movements over mass-luxury catalog pieces.",
+                    "Skeletonized architecture and exotic case materials (carbon TPT, ceramic) command sustained multi-year engagement.",
+                    "Waitlist attrition remains negligible for top-tier boutique allocations."
+                ],
+                items: ["W017", "W018", "W013", "W005"]
+            }
+        ];
+
+        const ALERT_FEED = [
+            { id: "W001", name: "Rolex Submariner Date", type: "Watch", time: "18m ago", desc: "Index moved +3.5% · Triggered 5% volatility alert", tag: "Index Alert", status: "triggered" },
+            { id: "J001", name: "Cartier LOVE Bracelet", type: "Jewelry", time: "1h ago", desc: "Mention velocity increased +14% week-over-week", tag: "Velocity Surge", status: "active" },
+            { id: "W006", name: "Audemars Piguet Royal Oak", type: "Watch", time: "3h ago", desc: "Price bracket stability confirmed across EU and US dealers", tag: "Stability Signal", status: "active" },
+            { id: "J004", name: "Van Cleef & Arpels Alhambra", type: "Jewelry", time: "5h ago", desc: "High attention threshold affirmed · Demand index 84/100", tag: "Priority Signal", status: "active" },
+            { id: "W017", name: "Richard Mille RM 11-03", type: "Watch", time: "8h ago", desc: "High complication index reached 67 · Watchlist alert fired", tag: "Threshold Met", status: "triggered" }
+        ];
+
+        let researchNotes = [
+            { id: "n1", title: "Cartier LOVE vs Van Cleef Alhambra Resilience", category: "Fine Jewelry", date: "Today · 09:15", content: "Motif-driven fine jewelry pieces maintain the lowest time-to-sale metrics. Yellow gold variants currently trade at the highest premium over spot metal value." },
+            { id: "n2", title: "Rolex Daytona Chronograph Delivery Velocity", category: "Watches", date: "Yesterday · 16:40", content: "Authorized dealer delivery cadence appears stable into Q4. Secondary market premiums remain steady within the $15k–$30k range with high buyer inquiry." },
+            { id: "n3", title: "Materials Focus: Titanium & Ceramic Sport Adaptations", category: "Market Outlook", date: "Oct 22, 2026", content: "Grand Seiko Snowflake titanium finishing and Hublot Big Bang ceramic ergonomics continue to demonstrate strong collector interest in lightweight luxury materials." }
+        ];
+
+        let wlFilter = 'All';
+
+        function renderMonitoringView() {
+            $('monCount').textContent = watch.size;
+            $('ruleCount').textContent = rules.size;
+            $('signalCount').textContent = ITEMS.filter(x => x.trend !== 'Stable').length;
+            $('monMatrixCount').textContent = watch.size + ' items active';
+
+            let monitored = ITEMS.filter(x => watch.has(x.id));
+            if (monitored.length) {
+                $('monitorTable').innerHTML = monitored.map(x => `<tr><td><div class="mini"><img src="${x.image}" alt=""><span><b>${esc(x.name)}</b><small>${esc(x.brand)}</small></span></div></td><td>${x.type}</td><td><span class="status ${trendClass(x.trend)}">${x.trend}</span></td><td>${esc(rules.get(x.id) || '5% change alert')}</td><td><span class="status rising">Active</span></td><td style="display:flex;gap:6px"><button class="linkbtn" data-open="${x.id}">Details ↗</button><button class="linkbtn" data-remove-mon="${x.id}" style="color:var(--red)">Remove</button></td></tr>`).join('');
+            } else {
+                $('monitorTable').innerHTML = `<tr><td colspan="6" style="padding:32px 18px;text-align:center"><div style="color:var(--muted);font-size:12px;margin-bottom:12px">No items currently under active surveillance matrix.</div><button class="btn gold" id="seedMonBtn" style="font-size:11px;padding:7px 14px">+ Seed Top Priority Items</button></td></tr>`;
+                if ($('seedMonBtn')) $('seedMonBtn').onclick = () => {
+                    ITEMS.filter(x => x.attention === 'High').forEach(x => { watch.add(x.id); rules.set(x.id, '5% change alert') });
+                    renderAll();
+                };
+            }
+
+            $('alertFeedContainer').innerHTML = ALERT_FEED.map(a => `<div class="feed-item" data-open="${a.id}"><div><b>${esc(a.name)} <small>(${a.type})</small></b><small>${esc(a.desc)}</small></div><div style="text-align:right;flex-shrink:0"><span class="feed-tag">${a.tag}</span><div style="margin-top:3px"><span class="feed-status ${a.status}">${a.time}</span></div></div></div>`).join('');
+
+            let suggestedMonItems = ['W002', 'J004', 'W006', 'J001'].map(id => ITEMS.find(x => x.id === id)).filter(Boolean);
+            renderGrid('suggestedMonGrid', suggestedMonItems);
+
+            document.querySelectorAll('[data-remove-mon]').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    let id = btn.dataset.removeMon;
+                    watch.delete(id);
+                    rules.delete(id);
+                    renderAll();
+                };
+            });
+        }
+
+        function renderWatchlistView() {
+            let saved = [...watch].map(id => ITEMS.find(x => x.id === id)).filter(Boolean);
+            $('wlTotal').textContent = saved.length;
+            let wCount = saved.filter(x => x.type === 'Watch').length;
+            let jCount = saved.filter(x => x.type === 'Jewelry').length;
+            $('wlWatches').textContent = wCount;
+            $('wlJewelry').textContent = jCount;
+            if (saved.length) {
+                let avg = Math.round(saved.reduce((acc, x) => acc + x.index, 0) / saved.length);
+                $('wlAvgIndex').textContent = avg + '/100';
+            } else {
+                $('wlAvgIndex').textContent = '—';
+            }
+
+            let displayList = saved;
+            if (wlFilter === 'Watch') displayList = saved.filter(x => x.type === 'Watch');
+            else if (wlFilter === 'Jewelry') displayList = saved.filter(x => x.type === 'Jewelry');
+            else if (wlFilter === 'Rising') displayList = saved.filter(x => x.trend === 'Rising');
+
+            $('wlCounterText').textContent = displayList.length + ' item' + (displayList.length === 1 ? '' : 's') + ' displayed';
+
+            if (!saved.length) {
+                $('watchGrid').innerHTML = `<div class="empty-rich"><div style="font-size:32px;margin-bottom:8px;color:var(--gold)">☆</div><h3 style="font:500 20px Georgia;margin:0 0 8px;color:var(--text)">Your research board is empty</h3><p style="color:var(--muted);max-width:520px;margin:0 auto 18px;font-size:12.5px">Star any luxury watch or fine-jewelry item to build your private research board, or launch immediately with a curated starter set:</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn gold" id="seedTrendLeaders" style="font-size:11px">+ Top Trend Leaders</button><button class="btn" id="seedHorology" style="font-size:11px">+ Haute Horlogerie Set</button><button class="btn" id="seedJewelry" style="font-size:11px">+ Fine Jewelry Icons</button></div></div>`;
+                if ($('seedTrendLeaders')) $('seedTrendLeaders').onclick = () => {
+                    ITEMS.filter(x => x.trend === 'Rising').slice(0, 5).forEach(x => watch.add(x.id));
+                    renderAll();
+                };
+                if ($('seedHorology')) $('seedHorology').onclick = () => {
+                    ['W001', 'W002', 'W004', 'W006'].forEach(id => watch.add(id));
+                    renderAll();
+                };
+                if ($('seedJewelry')) $('seedJewelry').onclick = () => {
+                    ['J001', 'J002', 'J004', 'J005'].forEach(id => watch.add(id));
+                    renderAll();
+                };
+            } else {
+                renderGrid('watchGrid', displayList);
+            }
+
+            let suggestedWatchItems = ['W004', 'W009', 'J005', 'J006'].map(id => ITEMS.find(x => x.id === id)).filter(Boolean);
+            renderGrid('suggestedWatchGrid', suggestedWatchItems);
+        }
+
+        function renderReportsView() {
+            $('reportsDeck').innerHTML = REPORTS.map(r => `<article class="report-card"><div class="report-meta"><span class="report-tag">${r.badge}</span><span class="report-time">${r.readTime}</span></div><h3>${esc(r.title)}</h3><p>${esc(r.summary)}</p><div class="report-stats">${r.stats.map(s => `<div class="report-stat-item"><small>${esc(s.l)}</small><b>${esc(s.v)}</b></div>`).join('')}</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;color:var(--muted)">${r.date}</span><button class="linkbtn" data-read-report="${r.id}" style="font-size:12px;font-weight:600">Read Executive Brief ↗</button></div></article>`).join('');
+
+            let repItems = ['W001', 'J004', 'W017', 'J002'].map(id => ITEMS.find(x => x.id === id)).filter(Boolean);
+            renderGrid('reportFeaturedItems', repItems);
+
+            $('notesCountBadge').textContent = researchNotes.length + ' memo' + (researchNotes.length === 1 ? '' : 's') + ' saved';
+            $('notesDeck').innerHTML = researchNotes.length ? researchNotes.map(n => `<div class="note-card"><div class="note-card-head"><div><b>${esc(n.title)}</b><div class="note-card-date">${esc(n.date)} · <span class="note-card-badge">${esc(n.category)}</span></div></div><button class="del-note-btn" data-del-note="${n.id}" aria-label="Delete note" title="Delete note">×</button></div><p>${esc(n.content)}</p></div>`).join('') : '<div style="text-align:center;padding:24px;color:var(--muted);font-size:12px">No research memos saved. Use the form above to record qualitative observations.</div>';
+
+            document.querySelectorAll('[data-read-report]').forEach(b => {
+                b.onclick = () => openReportModal(b.dataset.readReport);
+            });
+
+            document.querySelectorAll('[data-del-note]').forEach(b => {
+                b.onclick = (e) => {
+                    e.stopPropagation();
+                    researchNotes = researchNotes.filter(n => n.id !== b.dataset.delNote);
+                    renderReportsView();
+                };
+            });
+        }
+
+        let currentReport = null;
+
+        function openReportModal(repId) {
+            let r = REPORTS.find(x => x.id === repId);
+            if (!r) return;
+            currentReport = r;
+            $('repModalBadge').textContent = r.badge.toUpperCase() + ' · ' + r.category.toUpperCase();
+            $('repModalTitle').textContent = r.title;
+            $('repModalMeta').textContent = 'Published by Maison Advisory Desk · ' + r.date + ' · ' + r.readTime;
+            $('repModalSummary').textContent = r.summary;
+            if ($('repModalStats')) {
+                $('repModalStats').innerHTML = (r.stats || []).map(s => `
+                    <div class="report-stat-card">
+                        <small>${esc(s.l)}</small>
+                        <b>${esc(s.v)}</b>
+                    </div>
+                `).join('');
+            }
+            $('repModalTakeaways').innerHTML = r.takeaways.map(t => `
+                <li class="takeaway-item">
+                    <span class="takeaway-bullet">✦</span>
+                    <span>${esc(t)}</span>
+                </li>
+            `).join('');
+            let cited = r.items.map(id => ITEMS.find(x => x.id === id)).filter(Boolean);
+            $('repModalItems').innerHTML = cited.map(x => `
+                <div class="cited-piece-chip" data-open="${x.id}" title="View ${esc(x.name)} profile">
+                    <img src="${x.image}" alt="${esc(x.name)}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;border:1px solid rgba(215,183,122,0.25)">
+                    <span style="font-size:11.5px;display:flex;flex-direction:column;gap:1px">
+                        <b style="color:var(--text)">${esc(x.name)}</b>
+                        <small style="color:var(--gold);font-weight:600">${esc(x.price)}</small>
+                    </span>
+                </div>
+            `).join('');
+            $('reportBackdrop').classList.add('open');
+            syncBodyScroll();
+            attach();
+        }
+
+        function closeReportModal() {
+            $('reportBackdrop').classList.remove('open');
+            currentReport = null;
+            syncBodyScroll();
+        }
+
+        function exportCurrentReportBrief() {
+            if (!currentReport) return;
+            let text = `MAISON EXECUTIVE MARKET BRIEF\r\n` +
+                `Title: ${currentReport.title}\r\n` +
+                `Category: ${currentReport.category} | ${currentReport.badge}\r\n` +
+                `Date: ${currentReport.date} | Read Time: ${currentReport.readTime}\r\n` +
+                `Source: Maison Advisory Desk & Trend Intelligence\r\n\r\n` +
+                `EXECUTIVE SUMMARY:\r\n${currentReport.summary}\r\n\r\n` +
+                `KEY METRICS:\r\n` + (currentReport.stats || []).map(s => `- ${s.l}: ${s.v}`).join('\r\n') + `\r\n\r\n` +
+                `STRATEGIC TAKEAWAYS:\r\n` + (currentReport.takeaways || []).map((t, i) => `${i + 1}. ${t}`).join('\r\n') + `\r\n\r\n` +
+                `REFERENCED ASSETS:\r\n` + (currentReport.items || []).join(', ') + `\r\n`;
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
+            a.download = `maison-brief-${currentReport.id.toLowerCase()}.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showToast(`Executive Brief "${currentReport.title}" downloaded.`, 'success');
+        }
+
+        function exportWatchlistCSV() {
+            let saved = ITEMS.filter(x => watch.has(x.id));
+            if (!saved.length) { showToast('Your watchlist is currently empty. Star items from the catalog to export.', 'warning'); return; }
+            let rows = [['ID', 'Name', 'Type', 'Brand', 'Category', 'Material', 'Indicative price range', 'Trend index', 'Change %', 'Trend direction', 'Attention', 'Image URL', 'Monitoring focus'], ...saved.map(x => [x.id, x.name, x.type, x.brand, x.category, x.material, x.price, x.index, x.change, x.trend, x.attention, x.image, x.focus])];
+            let csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+            let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'maison-watchlist.csv'; a.click(); URL.revokeObjectURL(a.href);
+            showToast(`Exported ${saved.length} watchlist item${saved.length > 1 ? 's' : ''} to CSV.`, 'success');
+        }
+        function exportSignalsCSV() {
+            let rows = [['ID', 'Name', 'Type', 'Brand', 'Index', 'Change %', 'Mentions', 'Trend direction'], ...ITEMS.map(x => [x.id, x.name, x.type, x.brand, x.index, x.change, x.mentions, x.trend])];
+            let csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+            let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'maison-market-signals.csv'; a.click(); URL.revokeObjectURL(a.href);
+            showToast('Exported market signals dataset to CSV.', 'success');
+        }
+        function exportNotesText() {
+            if (!researchNotes.length) { showToast('No research memos saved. Record qualitative memos first.', 'warning'); return; }
+            let text = 'MAISON — LUXURY RESEARCH MEMOS\r\nExported: ' + (new Date()).toLocaleDateString() + '\r\n\r\n' + researchNotes.map((n, i) => `[${i + 1}] ${n.title}\r\nCategory: ${n.category} | Date: ${n.date}\r\n${n.content}\r\n----------------------------------------\r\n`).join('\r\n');
+            let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' })); a.download = 'maison-research-memos.txt'; a.click(); URL.revokeObjectURL(a.href);
+            showToast(`Exported ${researchNotes.length} research memo${researchNotes.length > 1 ? 's' : ''} to text.`, 'success');
+        }
+
+        function renderAll() {
+            $('kpiWatch').textContent = watch.size;
+            $('watchCount').textContent = watch.size;
+            $('kpiRising').textContent = ITEMS.filter(x => x.trend === 'Rising').length;
+            $('kpiHigh').textContent = ITEMS.filter(x => x.attention === 'High').length;
+            $('navCount').textContent = ITEMS.length;
+            if ($('kpiTotal')) $('kpiTotal').textContent = ITEMS.length;
+
+            $('risingCount').textContent = ITEMS.filter(x => x.trend === 'Rising').length;
+            $('stableCount').textContent = ITEMS.filter(x => x.trend === 'Stable').length;
+            $('decliningCount').textContent = ITEMS.filter(x => x.trend === 'Declining').length;
+
+            renderGrid('featured', ITEMS.slice(0, 8));
+            renderGrid('catalog', filtered());
+
+            renderMonitoringView();
+            renderWatchlistView();
+            renderReportsView();
+
+            $('signalTable').innerHTML = [...ITEMS].sort((a, b) => b.index - a.index).map(x => `<tr data-open="${x.id}" style="cursor:pointer"><td><div class="mini"><img src="${x.image}" alt=""><span><b>${esc(x.name)}</b><small>${esc(x.brand)}</small></span></div></td><td>${x.type}</td><td>${x.index}</td><td class="${x.change >= 0 ? 'positive' : 'negative'}">${x.change > 0 ? '+' : ''}${x.change}%</td><td>${x.mentions}</td><td><span class="status ${trendClass(x.trend)}">${x.trend}</span></td></tr>`).join('');
+            $('signalList').innerHTML = [...ITEMS].filter(x => x.trend !== 'Stable').sort((a, b) => Math.abs(b.change) - Math.abs(a.change)).slice(0, 5).map(x => `<div class="signal"><span><b>${esc(x.name)}</b><small>${esc(x.brand)} · ${x.trend} demo signal</small></span><b class="${x.change < 0 ? 'negative' : 'positive'}">${x.change > 0 ? '+' : ''}${x.change}%</b></div>`).join('');
+            drawChart();
+            attach();
+        }
+
+        function drawChart() { let svg = $('chart'), f = $('chartFilter').value, months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], a = [48, 54, 51, 62, 67, 72], b = [44, 47, 55, 53, 61, 65], s = '';[45, 75, 105, 135, 165].forEach(y => s += `<line x1="20" y1="${y}" x2="600" y2="${y}" stroke="#29313a" stroke-dasharray="3 5"/>`); function line(v, c) { s += `<polyline points="${v.map((n, i) => `${30 + i * 112},${175 - (n - 35) * 2.1}`).join(' ')}" fill="none" stroke="${c}" stroke-width="2.5"/>`; v.forEach((n, i) => s += `<circle cx="${30 + i * 112}" cy="${175 - (n - 35) * 2.1}" r="3" fill="${c}"/>`) } if (f !== 'Jewelry') line(a, '#d7b77a'); if (f !== 'Watch') line(b, '#9fc7ef'); months.forEach((m, i) => s += `<text x="${30 + i * 112}" y="195" fill="#8c969f" font-size="10" text-anchor="middle">${m}</text>`); svg.innerHTML = s }
+        function exportCSV() { let rows = [['ID', 'Name', 'Type', 'Brand', 'Category', 'Material', 'Indicative price range', 'Trend index (demo)', 'Change % (demo)', 'Trend direction', 'Attention', 'Image URL', 'Monitoring focus'], ...ITEMS.map(x => [x.id, x.name, x.type, x.brand, x.category, x.material, x.price, x.index, x.change, x.trend, x.attention, x.image, x.focus])]; let csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\r\n'); let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'maison-luxury-items.csv'; a.click(); URL.revokeObjectURL(a.href); showToast('Exported full luxury catalog to CSV.', 'success'); }
+
+        document.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click', () => goto(b.dataset.page)));
+        document.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => goto(b.dataset.goto)));
+
+        $('close').onclick = closeModal;
+        $('close2').onclick = closeModal;
+        $('backdrop').addEventListener('click', e => { if (e.target === $('backdrop')) closeModal() });
+
+        if ($('closeReport')) $('closeReport').onclick = closeReportModal;
+        if ($('closeReport2')) $('closeReport2').onclick = closeReportModal;
+        if ($('reportBackdrop')) $('reportBackdrop').addEventListener('click', e => { if (e.target === $('reportBackdrop')) closeReportModal() });
+        if ($('exportBriefBtn')) $('exportBriefBtn').onclick = exportCurrentReportBrief;
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                if ($('adminModal')?.classList.contains('open')) {
+                    closeAdminModal();
+                } else if ($('reportBackdrop')?.classList.contains('open')) {
+                    closeReportModal();
+                } else if ($('backdrop')?.classList.contains('open')) {
+                    closeModal();
+                }
+            }
+        });
+
+        $('toggle').onclick = () => {
+            if (!current) return;
+            let id = current.id;
+            if (watch.has(id)) {
+                watch.delete(id);
+                showToast(`${current.name} removed from watchlist.`, 'info');
+            } else {
+                watch.add(id);
+                let r = $('rule').value;
+                rules.set(id, r === 'news' ? 'New brand/news signal' : r + '% change alert');
+                showToast(`${current.name} added to watchlist.`, 'success');
+            }
+            renderAll();
+            $('toggle').textContent = watch.has(id) ? '★ Remove from watchlist' : '☆ Add to watchlist';
+        };
+        $('rule').onchange = () => {
+            if (current && watch.has(current.id)) {
+                let r = $('rule').value;
+                rules.set(current.id, r === 'news' ? 'New brand/news signal' : r + '% change alert');
+                renderAll();
+                showToast(`Rule updated for ${current.name}.`, 'info');
+            }
+        };
+
+        ['search', 'type', 'trend', 'attention'].forEach(id => $(id).addEventListener('input', () => { renderGrid('catalog', filtered()) }));
+        $('globalSearch').addEventListener('input', () => { goto('catalog'); $('search').value = $('globalSearch').value; renderGrid('catalog', filtered()) });
+
+        document.querySelectorAll('[data-quick]').forEach(b => b.addEventListener('click', () => { quick = b.dataset.quick; document.querySelectorAll('[data-quick]').forEach(x => x.classList.toggle('active', x === b)); renderGrid('catalog', filtered()) }));
+
+        document.querySelectorAll('#wlChips [data-wlfilter]').forEach(b => b.addEventListener('click', () => { wlFilter = b.dataset.wlfilter; document.querySelectorAll('#wlChips [data-wlfilter]').forEach(x => x.classList.toggle('active', x === b)); renderWatchlistView() }));
+
+        $('chartFilter').onchange = drawChart;
+        $('goWatch').onclick = () => goto('watchlist');
+        $('clear').onclick = () => { watch.clear(); rules.clear(); renderAll(); showToast('Watchlist cleared.', 'info'); };
+
+        $('monitorAll').onclick = () => { ITEMS.forEach(x => { watch.add(x.id); if (!rules.has(x.id)) rules.set(x.id, '5% change alert') }); renderAll(); showToast('All items added to active monitoring.', 'success'); };
+        if ($('monitorTop')) $('monitorTop').onclick = () => { let topItems = ITEMS.filter(x => x.attention === 'High'); topItems.forEach(x => { watch.add(x.id); if (!rules.has(x.id)) rules.set(x.id, '5% change alert') }); renderAll(); showToast(`Added ${topItems.length} high priority items to monitoring.`, 'success'); };
+        if ($('monitorReset')) $('monitorReset').onclick = () => { watch.clear(); rules.clear(); renderAll(); showToast('Monitoring watchlist cleared.', 'info'); };
+
+        if ($('exportWatchlist')) $('exportWatchlist').onclick = exportWatchlistCSV;
+        if ($('exportNotesBtn')) $('exportNotesBtn').onclick = exportNotesText;
+        if ($('exportSignalsCSV')) $('exportSignalsCSV').onclick = exportSignalsCSV;
+
+        if ($('noteForm')) $('noteForm').onsubmit = (e) => {
+            e.preventDefault();
+            let title = $('noteTitle').value.trim(), category = $('noteCat').value, content = $('noteContent').value.trim();
+            if (!title || !content) { showToast('Please enter both a title and research content.', 'warning'); return; }
+            researchNotes.unshift({ id: 'n_' + Date.now(), title, category, date: 'Today · ' + (new Date()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), content });
+            $('noteTitle').value = '';
+            $('noteContent').value = '';
+            renderReportsView();
+            showToast('Research memo saved.', 'success');
+        };
+
+        $('export').onclick = exportCSV;
+        $('export2').onclick = exportCSV;
+
+        // --- TEMPORARY DATA STORAGE (UP TO 10 USERS) & ADMIN ACCESS ENGINE ---
+        function formatDefaultName(email) {
+            if (!email) return 'Analyst';
+            let local = email.split('@')[0].replace(/[._-]/g, ' ');
+            return local.charAt(0).toUpperCase() + local.slice(1);
+        }
+
+        const LEGACY_DUMMY_EMAILS = new Set([
+            'geneva.desk@maison.internal',
+            'paris.curator@maison.internal',
+            'london.horology@maison.internal',
+            'milan.gemology@maison.internal',
+            'newyork.advisory@maison.internal',
+            'zurich.vault@maison.internal',
+            'tokyo.market@maison.internal',
+            'dubai.collector@maison.internal',
+            'monaco.auction@maison.internal',
+            'singapore.portfolio@maison.internal'
+        ]);
+
+        let authMode = 'login', currentUser = null, pendingRegistration = null;
+
+        function getRegisteredUsers() {
+            let accounts = [];
+            try {
+                let raw = localStorage.getItem('maison_registered_users');
+                if (raw) accounts = JSON.parse(raw);
+            } catch (e) { }
+            if (!Array.isArray(accounts)) accounts = [];
+            // Filter out old legacy dummy accounts and admin accounts (admin is not added or shared as a user)
+            accounts = accounts.filter(u => u && u.email && !LEGACY_DUMMY_EMAILS.has(u.email) && !isAdminUser(u));
+            return accounts;
+        }
+
+        function saveRegisteredUsers(accounts) {
+            try {
+                let clean = (accounts || []).filter(u => u && u.email && !LEGACY_DUMMY_EMAILS.has(u.email) && !isAdminUser(u));
+                localStorage.setItem('maison_registered_users', JSON.stringify(clean));
+            } catch (e) { }
+            updateCapacityUI();
+        }
+
+        function getUserLimit() {
+            try {
+                let raw = localStorage.getItem('maison_user_limit');
+                if (raw) {
+                    let n = parseInt(raw, 10);
+                    if (!isNaN(n) && n > 0) return n;
+                }
+            } catch (e) { }
+            return 10;
+        }
+
+        function setUserLimit(lim) {
+            try { localStorage.setItem('maison_user_limit', String(lim)); } catch (e) { }
+            updateCapacityUI();
+        }
+
+        function isAdminUser(user) {
+            if (!user) return false;
+            let name = String(user.name || '').trim().toLowerCase();
+            let email = String(user.email || '').trim().toLowerCase();
+            return name === 'admin' || email === 'admin' || email === 'admin@gmail.com' || email.startsWith('admin@') || email.startsWith('admin.');
+        }
+
+        function updateCapacityUI() {
+            let accounts = getRegisteredUsers();
+            let limit = getUserLimit();
+            // Total accessibility is 10 including Admin (1 Admin + registered independent users)
+            let totalAccesses = accounts.length + 1;
+            let summaryText = `${totalAccesses} / ${limit}`;
+            if ($('topbarCapacityCount')) $('topbarCapacityCount').textContent = summaryText;
+            if ($('authStorageCountBadge')) $('authStorageCountBadge').textContent = `${totalAccesses} / ${limit} Users Allocated`;
+            if ($('adminModalCount')) $('adminModalCount').textContent = totalAccesses;
+            if ($('adminModalLimit')) $('adminModalLimit').textContent = limit;
+            if ($('adminStatUsers')) $('adminStatUsers').textContent = accounts.length;
+            if ($('adminStatLimit')) $('adminStatLimit').textContent = `${limit} users max`;
+            if ($('adminListCount')) $('adminListCount').textContent = accounts.length;
+
+            let inc = parseInt($('increaseCountInput')?.value || 5, 10);
+            if (isNaN(inc) || inc < 1) inc = 5;
+            if ($('adminStatProjected')) $('adminStatProjected').textContent = `${limit + inc} users max`;
+
+            // Admin accessibility controls - only visible when signed in with account name admin
+            let isAdm = currentUser && isAdminUser(currentUser);
+            if ($('adminCapacityBtn')) {
+                $('adminCapacityBtn').style.display = isAdm ? 'inline-flex' : 'none';
+            }
+            if ($('sidebarAdminBadge')) {
+                $('sidebarAdminBadge').style.display = isAdm ? 'inline-block' : 'none';
+            }
+        }
+
+        function openAdminModal(opts = {}) {
+            if (!currentUser || !isAdminUser(currentUser)) {
+                showToast('Admin accessibility restricted. Please sign in with account name "admin" to manage capacity.', 'error');
+                return;
+            }
+            let accounts = getRegisteredUsers();
+            let limit = getUserLimit();
+            let totalAccess = accounts.length + 1;
+            pendingRegistration = opts.pending || null;
+
+            if ($('adminModalNotice')) {
+                let bannerClass = 'admin-alert-banner ' + (opts.isExceeded ? 'warning' : 'info');
+                $('adminModalNotice').className = bannerClass;
+                $('adminModalNotice').innerHTML = opts.isExceeded
+                    ? `<b>Alert:</b> User capacity limit reached (<b>${totalAccess} / ${limit} users</b>). Admin authorization required to expand capacity.`
+                    : `<b>Admin Access:</b> Active user allocation is currently <b>${totalAccess} / ${limit} users</b>. Specify additional capacity if required.`;
+            }
+            if ($('adminModalTitle')) $('adminModalTitle').textContent = opts.isExceeded ? 'User Capacity Exceeded' : 'Manage User Capacity';
+            if ($('adminFormError')) $('adminFormError').style.display = 'none';
+            if ($('increaseCountInput')) $('increaseCountInput').value = '5';
+            if ($('adminPasscode')) $('adminPasscode').value = 'admin';
+
+            document.querySelectorAll('.inc-chip').forEach(btn => {
+                btn.classList.toggle('active', btn.id === 'btnInc5');
+            });
+
+            updateCapacityUI();
+            renderAdminUserList();
+
+            $('adminModal').classList.add('open');
+            syncBodyScroll();
+        }
+
+        function closeAdminModal() {
+            $('adminModal').classList.remove('open');
+            syncBodyScroll();
+            if (pendingRegistration) {
+                pendingRegistration = null;
+            }
+        }
+
+        function handleAdminCapacitySubmit(e) {
+            e.preventDefault();
+            let passcode = ($('adminPasscode').value || '').trim();
+            let inc = parseInt($('increaseCountInput').value, 10);
+
+            if (!passcode) {
+                showAdminError('Please enter the administrator authorization passcode.');
+                return;
+            }
+            if (passcode.toLowerCase() !== 'admin' && passcode !== '1234') {
+                showAdminError('Invalid admin passcode. For demo verification, use "admin".');
+                return;
+            }
+            if (isNaN(inc) || inc < 1) {
+                showAdminError('Please specify at least 1 user to increase.');
+                return;
+            }
+
+            let currentLimit = getUserLimit();
+            let newLimit = currentLimit + inc;
+            setUserLimit(newLimit);
+
+            let accounts = getRegisteredUsers();
+            if (pendingRegistration) {
+                let norm = pendingRegistration.email.toLowerCase();
+                let displayName = pendingRegistration.name || formatDefaultName(norm);
+                let idx = accounts.findIndex(u => u.email === norm);
+                if (idx < 0) {
+                    accounts.push({ name: displayName, email: norm, createdAt: new Date().toISOString() });
+                    saveRegisteredUsers(accounts);
+                }
+                pendingRegistration = null;
+                $('adminModal').classList.remove('open');
+                syncBodyScroll();
+                showToast(`Capacity increased to ${newLimit} users. Welcome, ${displayName}!`, 'success');
+                loginSuccess(displayName, norm);
+                return;
+            }
+
+            $('adminModal').classList.remove('open');
+            syncBodyScroll();
+            updateCapacityUI();
+            showToast(`User capacity increased to ${newLimit} users.`, 'success');
+        }
+
+        function showAdminError(msg) {
+            let el = $('adminFormError');
+            if (!el) return;
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function setIncreaseAmount(n) {
+            if ($('increaseCountInput')) {
+                $('increaseCountInput').value = n;
+                document.querySelectorAll('.inc-chip').forEach(btn => {
+                    let val = parseInt(btn.textContent.replace('+', ''), 10);
+                    btn.classList.toggle('active', val === n);
+                });
+                updateCapacityUI();
+            }
+        }
+
+        function removeRegisteredUser(email) {
+            if (!currentUser || !isAdminUser(currentUser)) {
+                showToast('Admin authorization required to remove users.', 'error');
+                return;
+            }
+            let norm = String(email || '').trim().toLowerCase();
+            let accounts = getRegisteredUsers();
+            let target = accounts.find(u => u.email === norm);
+            if (!target) {
+                showToast('User not found.', 'error');
+                return;
+            }
+            let userName = target.name || target.email;
+            accounts = accounts.filter(u => u.email !== norm);
+            saveRegisteredUsers(accounts);
+            renderAdminUserList();
+            showToast(`User ${userName} has been removed.`, 'info');
+        }
+        window.removeRegisteredUser = removeRegisteredUser;
+
+        function renderAdminUserList() {
+            let accounts = getRegisteredUsers().filter(u => !isAdminUser(u));
+            let wrap = $('adminUserListWrap');
+            if (!wrap) return;
+            if (!accounts.length) {
+                wrap.innerHTML = '<div style="color:var(--muted);font-size:11px;padding:8px 0;text-align:center">No registered users yet. New user logins are automatically recorded here.</div>';
+                return;
+            }
+            wrap.innerHTML = accounts.map((u, i) => `
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #232b33;gap:10px">
+                    <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+                        <b style="color:var(--gold)">#${i + 1}</b> &nbsp;<b>${esc(u.name || 'User')}</b> <small style="color:#8a99a8">(${esc(u.email)})</small>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+                        <span style="color:var(--muted);font-size:10px">${u.createdAt ? (new Date(u.createdAt)).toLocaleDateString() : 'Active'}</span>
+                        <button type="button" class="btn" onclick="removeRegisteredUser('${esc(u.email)}')" style="font-size:10px;padding:3px 8px;border-radius:5px;color:#fca5a5;background:#2c1515;border:1px solid #6b2828;cursor:pointer" title="Remove user">✕ Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function evalPassword(pwd) { let s = String(pwd || ''); return { len: s.length >= 6, num: /[0-9]/.test(s), upper: /[A-Z]/.test(s), special: /[^A-Za-z0-9]/.test(s) } }
+        function updateChecklistUI(pwd) { let res = evalPassword(pwd); const set = (id, ok) => { let el = $(id); if (!el) return; el.classList.toggle('valid', ok); let ic = el.querySelector('.chk-icon'); if (ic) ic.textContent = ok ? '✓' : '○' }; set('chkLen', res.len); set('chkNum', res.num); set('chkUpper', res.upper); set('chkSpecial', res.special); return res.len && res.num && res.upper && res.special }
+        function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim()) }
+        function showAuthNotice(msg, type = 'error') { let el = $('authNotice'); if (!el) return; el.textContent = msg; el.style.display = 'block'; if (type === 'error') { el.style.borderColor = '#8a3434'; el.style.background = '#2c1515'; el.style.color = '#ffb3b3' } else { el.style.borderColor = '#3d6c4e'; el.style.background = '#14251a'; el.style.color = '#a2e8bc' } }
+        function hideAuthNotice() { let el = $('authNotice'); if (el) el.style.display = 'none' }
+
+        function openTermsModal() {
+            if ($('termsModal')) {
+                $('termsModal').classList.add('open');
+                syncBodyScroll();
+            }
+        }
+
+        function closeTermsModal() {
+            if ($('termsModal')) {
+                $('termsModal').classList.remove('open');
+                syncBodyScroll();
+            }
+        }
+
+        function updateConfirmMatchUI() {
+            let badge = $('confirmPwdMatchBadge');
+            let inp = $('authConfirmPassword');
+            if (!badge || !inp) return;
+            let pwd = $('authPassword')?.value || '';
+            let confirm = inp.value || '';
+            if (authMode !== 'register' || !confirm) {
+                badge.innerHTML = 'Must match password';
+                badge.style.color = 'var(--muted)';
+                inp.style.borderColor = 'var(--line)';
+                return;
+            }
+            if (pwd === confirm) {
+                badge.innerHTML = '<span style="color:var(--green)">✓ Passwords match</span>';
+                badge.style.color = 'var(--green)';
+                inp.style.borderColor = 'var(--green)';
+            } else {
+                badge.innerHTML = '<span style="color:#f87171">✗ Passwords do not match</span>';
+                badge.style.color = '#f87171';
+                inp.style.borderColor = '#8a3434';
+            }
+        }
+
+        function applyAdminAutoFill(checked) {
+            let nameInp = $('authName');
+            let emailInp = $('authEmail');
+            let pwdInp = $('authPassword');
+            if (checked) {
+                if (nameInp) nameInp.value = 'Admin';
+                if (emailInp) emailInp.value = 'admin@gmail.com';
+                if (pwdInp) pwdInp.value = 'Admin@123';
+                updateChecklistUI('Admin@123');
+                hideAuthNotice();
+            } else {
+                if (nameInp && nameInp.value === 'Admin') nameInp.value = '';
+                if (emailInp && emailInp.value === 'admin@gmail.com') emailInp.value = '';
+                if (pwdInp && pwdInp.value === 'Admin@123') pwdInp.value = '';
+                updateChecklistUI(pwdInp ? pwdInp.value : '');
+            }
+        }
+
+        function openForgotPasswordModal() {
+            if ($('forgotPasswordModal')) {
+                let currEmail = ($('authEmail')?.value || '').trim();
+                if ($('forgotEmailInput')) $('forgotEmailInput').value = currEmail;
+                if ($('forgotEmailError')) $('forgotEmailError').style.display = 'none';
+                if ($('forgotEmailSuccess')) $('forgotEmailSuccess').style.display = 'none';
+                $('forgotPasswordModal').classList.add('open');
+                syncBodyScroll();
+                setTimeout(() => { if ($('forgotEmailInput')) $('forgotEmailInput').focus(); }, 100);
+            }
+        }
+
+        function closeForgotPasswordModal() {
+            if ($('forgotPasswordModal')) {
+                $('forgotPasswordModal').classList.remove('open');
+                syncBodyScroll();
+            }
+        }
+
+        function handleForgotSubmit(e) {
+            e.preventDefault();
+            let email = ($('forgotEmailInput')?.value || '').trim();
+            let err = $('forgotEmailError');
+            let succ = $('forgotEmailSuccess');
+            if (err) err.style.display = 'none';
+            if (succ) succ.style.display = 'none';
+
+            if (!isValidEmail(email)) {
+                if (err) {
+                    err.textContent = 'Please enter a valid email address.';
+                    err.style.display = 'block';
+                }
+                return;
+            }
+
+            let isAdm = email.toLowerCase() === 'admin@gmail.com' || email.toLowerCase() === 'admin';
+            let msg = isAdm 
+                ? 'Admin credentials identified. You may sign in directly with password: Admin@123'
+                : `Password reset instructions and secure recovery token dispatched to ${esc(email)}.`;
+
+            if (succ) {
+                succ.innerHTML = `✓ ${msg}`;
+                succ.style.display = 'block';
+            }
+            showToast('Password recovery instructions sent successfully.', 'success');
+            setTimeout(() => {
+                closeForgotPasswordModal();
+            }, 2200);
+        }
+
+        function setAuthMode(mode) {
+            authMode = mode;
+            $('tabLogin').classList.toggle('active', mode === 'login');
+            $('tabRegister').classList.toggle('active', mode === 'register');
+            let isReg = mode === 'register';
+            if ($('authConfirmPasswordGroup')) $('authConfirmPasswordGroup').style.display = isReg ? 'block' : 'none';
+            if ($('authTermsGroup')) $('authTermsGroup').style.display = isReg ? 'block' : 'none';
+            if ($('authLoginExtras')) $('authLoginExtras').style.display = isReg ? 'none' : 'block';
+            if (!isReg && $('authConfirmPassword')) $('authConfirmPassword').value = '';
+            if (!isReg && $('authTermsCheckbox')) $('authTermsCheckbox').checked = false;
+            updateConfirmMatchUI();
+
+            if (mode === 'login') {
+                $('authSubmitBtn').textContent = 'Sign In to Platform';
+                $('authSwitchPrompt').innerHTML = 'Don\'t have an account? <button type="button" class="linkbtn" id="linkSwitch" style="font-weight:600">Create one now →</button>';
+            } else {
+                $('authSubmitBtn').textContent = 'Create Account & Enter Platform';
+                $('authSwitchPrompt').innerHTML = 'Already have an account? <button type="button" class="linkbtn" id="linkSwitch" style="font-weight:600">Sign in instead →</button>';
+            }
+            let sw = $('linkSwitch');
+            if (sw) sw.onclick = () => setAuthMode(authMode === 'login' ? 'register' : 'login');
+            hideAuthNotice();
+            updateCapacityUI();
+        }
+
+        function loginSuccess(name, email) {
+            let norm = email.toLowerCase();
+            let displayName = (name || '').trim();
+            if (!displayName) {
+                displayName = formatDefaultName(norm);
+            }
+            currentUser = { name: displayName, email: norm, loggedInAt: new Date().toISOString() };
+            try {
+                localStorage.setItem('maison_auth_user', JSON.stringify(currentUser));
+            } catch (e) { }
+            document.documentElement.classList.add('user-authed');
+            $('authScreen').classList.add('hidden');
+            syncBodyScroll();
+
+            if ($('userNameSpan')) $('userNameSpan').textContent = displayName;
+            if ($('userEmailSpan')) $('userEmailSpan').textContent = norm;
+            if ($('reportsUserName')) $('reportsUserName').textContent = displayName;
+            if ($('reportsUserEmail')) $('reportsUserEmail').textContent = norm;
+
+            if ($('authName')) $('authName').value = '';
+            $('authEmail').value = '';
+            $('authPassword').value = '';
+            if ($('authConfirmPassword')) $('authConfirmPassword').value = '';
+            if ($('authTermsCheckbox')) $('authTermsCheckbox').checked = false;
+            updateConfirmMatchUI();
+            updateChecklistUI('');
+            hideAuthNotice();
+            updateCapacityUI();
+            showToast(`Signed in successfully. Welcome, ${displayName}!`, 'success');
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            let name = ($('authName')?.value || '').trim();
+            let email = ($('authEmail').value || '').trim();
+            let password = $('authPassword').value || '';
+            let confirmPassword = $('authConfirmPassword')?.value || '';
+            let termsAccepted = $('authTermsCheckbox')?.checked;
+            let remember = $('authRememberMe')?.checked;
+
+            if (!name && authMode === 'register') {
+                showAuthNotice('Please enter your full name.', 'error');
+                $('authName')?.focus();
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showAuthNotice('Please provide a proper email address (e.g. analyst@luxury.com).', 'error');
+                $('authEmail').focus();
+                return;
+            }
+
+            if (!password) {
+                showAuthNotice('Please enter a password of your choice.', 'error');
+                $('authPassword').focus();
+                return;
+            }
+
+            if (authMode === 'register') {
+                if (!confirmPassword) {
+                    showAuthNotice('Please confirm your password.', 'error');
+                    $('authConfirmPassword')?.focus();
+                    return;
+                }
+                if (password !== confirmPassword) {
+                    showAuthNotice('Passwords do not match. Please ensure both passwords match.', 'error');
+                    $('authConfirmPassword')?.focus();
+                    return;
+                }
+                if (!termsAccepted) {
+                    showAuthNotice('Please agree to the Terms & Conditions to create an account.', 'error');
+                    $('authTermsCheckbox')?.focus();
+                    return;
+                }
+            }
+
+            let norm = email.toLowerCase();
+            let displayName = (name || '').trim();
+
+            // Store Remember Me state
+            try {
+                if (remember) {
+                    localStorage.setItem('maison_remember_me', 'true');
+                    localStorage.setItem('maison_remembered_email', norm);
+                    if (displayName) localStorage.setItem('maison_remembered_name', displayName);
+                } else {
+                    localStorage.removeItem('maison_remember_me');
+                    localStorage.removeItem('maison_remembered_email');
+                    localStorage.removeItem('maison_remembered_name');
+                }
+            } catch (e) { }
+
+            // Admin account: authenticated directly with administrator role, NOT added or shared as a registered user in temporary storage
+            if (isAdminUser({ name: displayName, email: norm }) || $('authLoginAsAdmin')?.checked) {
+                if (!displayName) displayName = 'Admin';
+                loginSuccess(displayName, norm);
+                return;
+            }
+
+            // Independent registered users
+            let accounts = getRegisteredUsers();
+            let limit = getUserLimit();
+            let existingIdx = accounts.findIndex(u => u.email === norm);
+
+            if (existingIdx >= 0) {
+                // Existing account found - update name if entered
+                if (displayName) {
+                    accounts[existingIdx].name = displayName;
+                } else {
+                    displayName = accounts[existingIdx].name || formatDefaultName(norm);
+                }
+                saveRegisteredUsers(accounts);
+            } else {
+                // Automatic user registration & storage allocation
+                // Total user accessibility is 10 including Admin (1 Admin + accounts.length)
+                if (!displayName) displayName = formatDefaultName(norm);
+                if ((accounts.length + 1) >= limit) {
+                    limit = accounts.length + 1 + 5;
+                    setUserLimit(limit);
+                }
+                accounts.push({ name: displayName, email: norm, createdAt: new Date().toISOString() });
+                saveRegisteredUsers(accounts);
+            }
+
+            loginSuccess(displayName, norm);
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            try {
+                localStorage.removeItem('maison_auth_user');
+            } catch (e) { }
+            document.documentElement.classList.remove('user-authed');
+            $('authScreen').classList.remove('hidden');
+            syncBodyScroll();
+
+            let rem = false;
+            let remEmail = '';
+            let remName = '';
+            try {
+                rem = localStorage.getItem('maison_remember_me') === 'true';
+                remEmail = localStorage.getItem('maison_remembered_email') || '';
+                remName = localStorage.getItem('maison_remembered_name') || '';
+            } catch (e) { }
+
+            if ($('authName')) $('authName').value = rem ? remName : '';
+            $('authEmail').value = rem ? remEmail : '';
+            $('authPassword').value = '';
+            if ($('authConfirmPassword')) $('authConfirmPassword').value = '';
+            if ($('authTermsCheckbox')) $('authTermsCheckbox').checked = false;
+            if ($('authRememberMe')) $('authRememberMe').checked = rem;
+            if ($('authLoginAsAdmin')) $('authLoginAsAdmin').checked = false;
+            updateConfirmMatchUI();
+            updateChecklistUI('');
+            setAuthMode('login');
+            goto('overview');
+            updateCapacityUI();
+            showToast('You have been logged out from Maison.', 'info');
+        }
+
+        function initAuth() {
+            // Clean up registered user storage so admin and legacy dummy accounts are never retained
+            saveRegisteredUsers(getRegisteredUsers());
+            let saved = null;
+            try {
+                let raw = localStorage.getItem('maison_auth_user');
+                if (raw) saved = JSON.parse(raw);
+            } catch (e) { }
+            if (saved && saved.email) {
+                currentUser = saved;
+                let displayName = saved.name || formatDefaultName(saved.email);
+                document.documentElement.classList.add('user-authed');
+                $('authScreen').classList.add('hidden');
+                syncBodyScroll();
+                if ($('userNameSpan')) $('userNameSpan').textContent = displayName;
+                if ($('userEmailSpan')) $('userEmailSpan').textContent = saved.email;
+                if ($('reportsUserName')) $('reportsUserName').textContent = displayName;
+                if ($('reportsUserEmail')) $('reportsUserEmail').textContent = saved.email;
+            } else {
+                currentUser = null;
+                document.documentElement.classList.remove('user-authed');
+                $('authScreen').classList.remove('hidden');
+                syncBodyScroll();
+            }
+
+            $('tabLogin').onclick = () => setAuthMode('login');
+            $('tabRegister').onclick = () => setAuthMode('register');
+            let sw = $('linkSwitch');
+            if (sw) sw.onclick = () => setAuthMode(authMode === 'login' ? 'register' : 'login');
+
+            // Remember me initialization from storage
+            try {
+                let rem = localStorage.getItem('maison_remember_me') === 'true';
+                if ($('authRememberMe')) $('authRememberMe').checked = rem;
+                let remEmail = localStorage.getItem('maison_remembered_email');
+                let remName = localStorage.getItem('maison_remembered_name');
+                if (rem && remEmail && !currentUser) {
+                    if ($('authEmail')) $('authEmail').value = remEmail;
+                    if ($('authName') && remName) $('authName').value = remName;
+                }
+            } catch (e) { }
+
+            // Admin auto-fill checkbox
+            if ($('authLoginAsAdmin')) {
+                $('authLoginAsAdmin').addEventListener('change', e => {
+                    applyAdminAutoFill(e.target.checked);
+                });
+            }
+
+            // Input monitors to uncheck admin autofill if credentials are manually changed
+            const monitorAdminInputs = () => {
+                if ($('authLoginAsAdmin') && $('authLoginAsAdmin').checked) {
+                    let n = ($('authName')?.value || '').trim();
+                    let em = ($('authEmail')?.value || '').trim();
+                    let pw = $('authPassword')?.value || '';
+                    if (n !== 'Admin' || em !== 'admin@gmail.com' || pw !== 'Admin@123') {
+                        $('authLoginAsAdmin').checked = false;
+                    }
+                }
+            };
+            if ($('authName')) $('authName').addEventListener('input', monitorAdminInputs);
+            if ($('authEmail')) $('authEmail').addEventListener('input', monitorAdminInputs);
+
+            $('authPassword').addEventListener('input', e => {
+                updateChecklistUI(e.target.value);
+                updateConfirmMatchUI();
+                monitorAdminInputs();
+            });
+            if ($('authConfirmPassword')) {
+                $('authConfirmPassword').addEventListener('input', updateConfirmMatchUI);
+            }
+            $('togglePasswordBtn').onclick = () => {
+                let inp = $('authPassword'), isPwd = inp.type === 'password';
+                inp.type = isPwd ? 'text' : 'password';
+                $('togglePasswordBtn').textContent = isPwd ? '🙈' : '👁';
+            };
+            if ($('toggleConfirmPasswordBtn')) {
+                $('toggleConfirmPasswordBtn').onclick = () => {
+                    let inp = $('authConfirmPassword'), isPwd = inp.type === 'password';
+                    inp.type = isPwd ? 'text' : 'password';
+                    $('toggleConfirmPasswordBtn').textContent = isPwd ? '🙈' : '👁';
+                };
+            }
+            if ($('openTermsLink')) {
+                $('openTermsLink').onclick = e => {
+                    e.preventDefault();
+                    openTermsModal();
+                };
+            }
+            if ($('closeTermsModal')) $('closeTermsModal').onclick = closeTermsModal;
+            if ($('closeTermsModalBtn')) $('closeTermsModalBtn').onclick = closeTermsModal;
+            if ($('acceptTermsBtn')) {
+                $('acceptTermsBtn').onclick = () => {
+                    if ($('authTermsCheckbox')) $('authTermsCheckbox').checked = true;
+                    closeTermsModal();
+                };
+            }
+            if ($('termsModal')) {
+                $('termsModal').addEventListener('click', e => {
+                    if (e.target === $('termsModal')) closeTermsModal();
+                });
+            }
+
+            // Forgot password modal event bindings
+            if ($('forgotPasswordBtn')) $('forgotPasswordBtn').onclick = openForgotPasswordModal;
+            if ($('closeForgotModal')) $('closeForgotModal').onclick = closeForgotPasswordModal;
+            if ($('cancelForgotBtn')) $('cancelForgotBtn').onclick = closeForgotPasswordModal;
+            if ($('forgotPasswordModal')) {
+                $('forgotPasswordModal').addEventListener('click', e => {
+                    if (e.target === $('forgotPasswordModal')) closeForgotPasswordModal();
+                });
+            }
+            if ($('forgotPasswordForm')) $('forgotPasswordForm').onsubmit = handleForgotSubmit;
+            $('authForm').onsubmit = handleAuthSubmit;
+            if ($('logoutBtn')) $('logoutBtn').onclick = handleLogout;
+            if ($('reportsLogoutBtn')) $('reportsLogoutBtn').onclick = handleLogout;
+
+            // Admin capacity modal event bindings
+            if ($('adminCapacityBtn')) $('adminCapacityBtn').onclick = () => openAdminModal({ isExceeded: false });
+            if ($('closeAdminModal')) $('closeAdminModal').onclick = closeAdminModal;
+            if ($('cancelAdminBtn')) $('cancelAdminBtn').onclick = closeAdminModal;
+            if ($('adminModal')) $('adminModal').addEventListener('click', e => { if (e.target === $('adminModal')) closeAdminModal(); });
+            if ($('adminCapacityForm')) $('adminCapacityForm').onsubmit = handleAdminCapacitySubmit;
+            if ($('increaseCountInput')) {
+                $('increaseCountInput').addEventListener('input', () => {
+                    let val = parseInt($('increaseCountInput').value, 10);
+                    document.querySelectorAll('.inc-chip').forEach(btn => {
+                        let chipVal = parseInt(btn.textContent.replace('+', ''), 10);
+                        btn.classList.toggle('active', chipVal === val);
+                    });
+                    updateCapacityUI();
+                });
+            }
+            if ($('btnInc5')) $('btnInc5').onclick = () => setIncreaseAmount(5);
+            if ($('btnInc10')) $('btnInc10').onclick = () => setIncreaseAmount(10);
+            if ($('btnInc25')) $('btnInc25').onclick = () => setIncreaseAmount(25);
+            if ($('btnInc50')) $('btnInc50').onclick = () => setIncreaseAmount(50);
+
+            if ($('toggleUserListBtn')) {
+                $('toggleUserListBtn').onclick = () => {
+                    let wrap = $('adminUserListWrap');
+                    let arrow = $('userListArrow');
+                    if (!wrap) return;
+                    let isHidden = wrap.style.display === 'none';
+                    wrap.style.display = isHidden ? 'block' : 'none';
+                    if (arrow) arrow.textContent = isHidden ? '▾' : '▸';
+                    if (isHidden) renderAdminUserList();
+                };
+            }
+
+            updateCapacityUI();
+        }
+
+        initAuth();
+        renderAll();
+    </script>
+</body>
+
+</html>
