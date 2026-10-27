@@ -39,8 +39,26 @@
             font: inherit
         }
 
-        button {
-            cursor: pointer
+        button,
+        a,
+        .btn,
+        .linkbtn,
+        input[type="button"],
+        input[type="submit"] {
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(215, 183, 122, 0.6);
         }
 
         .app {
@@ -267,24 +285,72 @@
         }
 
         .search,
-        .select,
-        .btn {
+        .search,
+        .select {
             border: 1px solid var(--line);
             background: var(--panel);
             color: var(--text);
             padding: 9px 11px;
-            border-radius: 8px
+            border-radius: 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .search {
-            width: min(300px, 28vw)
+        .search:focus,
+        .select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(215, 183, 122, 0.25);
+        }
+
+        .btn {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--text);
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn:hover {
+            background: #1e2632;
+            border-color: rgba(215, 183, 122, 0.6);
+            color: var(--gold);
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 12px rgba(215, 183, 122, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
         }
 
         .btn.gold {
-            background: var(--gold);
-            color: #16130d;
-            border-color: var(--gold);
-            font-weight: 700
+            background: linear-gradient(135deg, #dfc288 0%, #caa15a 100%);
+            color: #0b0e11;
+            border: 1px solid #dfc288;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(215, 183, 122, 0.25);
+        }
+
+        .btn.gold:hover {
+            background: linear-gradient(135deg, #ebd4a1 0%, #d4aa60 100%);
+            border-color: #f5e4bd;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(215, 183, 122, 0.48), 0 0 16px rgba(215, 183, 122, 0.3);
+            filter: brightness(1.06);
+        }
+
+        .btn.gold:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(215, 183, 122, 0.3);
         }
 
         .content {
@@ -471,12 +537,30 @@
             background: var(--panel);
             color: var(--muted);
             padding: 7px 11px;
-            font-size: 11px
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chip:hover {
+            color: #ffffff;
+            border-color: rgba(215, 183, 122, 0.65);
+            background: #1c232c;
+            transform: translateY(-1.5px);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
         }
 
         .chip.active {
             color: var(--gold);
-            border-color: var(--gold)
+            border-color: var(--gold);
+            background: rgba(215, 183, 122, 0.1);
+        }
+
+        .chip.active:hover {
+            background: rgba(215, 183, 122, 0.2);
+            color: #ffffff;
+            border-color: var(--gold);
+            box-shadow: 0 0 12px rgba(215, 183, 122, 0.3);
         }
 
         .grid {
@@ -534,12 +618,31 @@
             width: 30px;
             height: 30px;
             color: white;
-            font-size: 16px
+            font-size: 16px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .star:hover {
+            transform: scale(1.18);
+            background: #1a222a;
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 14px rgba(215, 183, 122, 0.55);
         }
 
         .star.on {
             color: var(--gold);
-            border-color: var(--gold)
+            border-color: var(--gold);
+            background: rgba(28, 22, 14, 0.95);
+        }
+
+        .star.on:hover {
+            transform: scale(1.18);
+            box-shadow: 0 0 18px rgba(215, 183, 122, 0.75);
+            color: #ffe6a8;
         }
 
         .cardbody {
@@ -641,7 +744,27 @@
             border: 0;
             background: none;
             color: var(--gold);
-            font-size: 11px
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .linkbtn:hover {
+            color: #ffffff;
+            background: rgba(215, 183, 122, 0.14);
+            text-shadow: 0 0 10px rgba(215, 183, 122, 0.65);
+            transform: translateY(-1px);
+        }
+
+        .linkbtn:active {
+            transform: translateY(0);
         }
 
         .empty {
@@ -1175,8 +1298,8 @@
             }
         }
 
-        /* Mobile and tablet responsive navigation: 300px to 1000px */
-        @media(max-width:1000px) {
+        /* Mobile and tablet responsive navigation: 300px to 1024px */
+        @media(max-width:1024px) {
             .app {
                 display: block;
                 min-height: 100vh;
@@ -1917,17 +2040,18 @@
 
         .auth-header {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            margin-bottom: 15px;
-            text-align: left;
+            gap: 10px;
+            margin-bottom: 18px;
+            text-align: center;
         }
 
         .auth-logo-mark {
-            width: 44px;
-            height: 44px;
-            font-size: 22px;
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
             font-family: Georgia, serif;
             font-weight: 700;
             border: 1.5px solid var(--gold);
@@ -1936,21 +2060,26 @@
             place-items: center;
             color: var(--gold);
             background: radial-gradient(circle at 30% 30%, #2a3441, #13181e);
-            box-shadow: 0 0 20px rgba(215, 183, 122, 0.25);
+            box-shadow: 0 0 20px rgba(215, 183, 122, 0.3);
             flex-shrink: 0;
+            margin: 0 auto;
         }
 
         .auth-brand-text {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
+            text-align: center;
+            width: 100%;
         }
 
         .auth-title {
-            font: 600 22px/1.15 Georgia, serif;
+            font: 600 23px/1.15 Georgia, serif;
             margin: 0;
             color: var(--gold);
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
+            text-align: center;
         }
 
         .auth-subtitle {
@@ -1958,8 +2087,9 @@
             color: var(--muted);
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            margin-top: 3px;
+            margin-top: 4px;
             font-weight: 500;
+            text-align: center;
         }
 
         @keyframes authFadeIn {
@@ -1995,12 +2125,74 @@
             font-weight: 600;
             font-size: 12px;
             cursor: pointer;
-            transition: color .2s, border-color .2s;
+            transition: color .2s, border-color .2s, background-color .2s;
+        }
+
+        .auth-tab:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom-color: rgba(215, 183, 122, 0.35);
         }
 
         .auth-tab.active {
             color: var(--gold);
             border-bottom-color: var(--gold);
+        }
+
+        .auth-tab.active:hover {
+            color: #f7dfa7;
+            border-bottom-color: var(--gold);
+        }
+
+        /* Specialized Interactive Button Hover Rules */
+        #adminCapacityBtn {
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #adminCapacityBtn:hover {
+            background: #1c232c !important;
+            border-color: rgba(215, 183, 122, 0.6) !important;
+            color: var(--gold) !important;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px rgba(215, 183, 122, 0.25);
+        }
+
+        #logoutBtn,
+        #reportsLogoutBtn {
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #logoutBtn:hover,
+        #reportsLogoutBtn:hover {
+            background: #2f1919 !important;
+            border-color: #ef8b8b !important;
+            color: #ffffff !important;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 14px rgba(239, 139, 139, 0.3);
+        }
+
+        #togglePasswordBtn,
+        #toggleConfirmPasswordBtn {
+            cursor: pointer;
+            transition: all 0.2s ease !important;
+        }
+
+        #togglePasswordBtn:hover,
+        #toggleConfirmPasswordBtn:hover {
+            color: var(--gold) !important;
+            transform: translateY(-50%) scale(1.2) !important;
+        }
+
+        #backToAdminPromptBtn {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #backToAdminPromptBtn:hover {
+            color: #ffffff !important;
+            text-shadow: 0 0 10px rgba(215, 183, 122, 0.8) !important;
+            transform: translateY(-1px);
         }
 
         .pwd-checklist-grid {
@@ -2036,13 +2228,147 @@
         .user-authed .auth-screen {
             display: none !important;
         }
+
+        /* Admin First Prompt Card Styles */
+        .admin-prompt-card {
+            background: linear-gradient(180deg, #19202a 0%, #101419 100%);
+            border: 1px solid rgba(215, 183, 122, 0.45);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.92), 0 0 45px rgba(215, 183, 122, 0.16);
+            width: min(450px, 100%);
+            padding: 24px 26px;
+            animation: authFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .admin-prompt-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 12px 0 20px;
+        }
+
+        .admin-prompt-heading {
+            font: 600 23px/1.25 Georgia, serif;
+            color: #ffffff;
+            margin: 0 0 9px;
+            letter-spacing: 0.02em;
+        }
+
+        .admin-prompt-desc {
+            font-size: 12.5px;
+            line-height: 1.55;
+            color: #9ba5ae;
+            margin: 0;
+            max-width: 380px;
+        }
+
+        .admin-prompt-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn-yes {
+            background: linear-gradient(135deg, #dfc288 0%, #caa15a 100%);
+            color: #0d1115;
+            border: 1px solid rgba(215, 183, 122, 0.7);
+            border-radius: 8px;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(215, 183, 122, 0.28);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+            min-height: 40px;
+        }
+
+        .admin-btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(215, 183, 122, 0.45);
+            filter: brightness(1.06);
+        }
+
+        .admin-btn-yes:active {
+            transform: translateY(0);
+        }
+
+        .admin-btn-no {
+            background: linear-gradient(180deg, #182029 0%, #11151c 100%);
+            color: #f1ede4;
+            border: 1px solid rgba(215, 183, 122, 0.35);
+            border-radius: 8px;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+            min-height: 40px;
+        }
+
+        .admin-btn-no:hover {
+            background: linear-gradient(180deg, #232d3a 0%, #171d26 100%);
+            border-color: var(--gold);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(215, 183, 122, 0.2);
+        }
+
+        .admin-btn-no:active {
+            transform: translateY(0);
+        }
     </style>
-    <script>try { if (localStorage.getItem('maison_auth_user')) { document.documentElement.classList.add('user-authed') } } catch (e) { }</script>
+    <script>try { if (sessionStorage.getItem('maison_session_authed') === 'true' && localStorage.getItem('maison_auth_user')) { document.documentElement.classList.add('user-authed') } } catch (e) { }</script>
 </head>
 
 <body>
     <div class="auth-screen" id="authScreen">
-        <div class="auth-card">
+        <!-- FIRST POPUP: Login as Admin Prompt (Comes First) -->
+        <div class="auth-card admin-prompt-card" id="adminPromptCard" style="display:block">
+            <div class="auth-header">
+                <img src="logo.png" alt="MAISON" class="auth-logo-mark auth-logo-img">
+                <div class="auth-brand-text">
+                    <h2 class="auth-title">MAISON</h2>
+                    <div class="auth-subtitle">Luxury Jewelry &amp; Watch Intelligence</div>
+                </div>
+            </div>
+
+            <div class="admin-prompt-hero">
+                <h3 class="admin-prompt-heading">Login with Admin?</h3>
+                <p class="admin-prompt-desc">
+                    Would you like to enter directly with Administrator privileges, or open the standard login page?
+                </p>
+            </div>
+
+            <div class="admin-prompt-actions">
+                <button type="button" id="adminPromptYesBtn" class="admin-btn-yes" title="Login as Admin and go directly to Overview">
+                    Login as Admin
+                </button>
+
+                <button type="button" id="adminPromptNoBtn" class="admin-btn-no" title="Proceed to regular Sign In / Register form">
+                    Standard Login
+                </button>
+            </div>
+        </div>
+
+        <!-- SECOND CARD: Standard Login / Registration Card (Shown when clicking 'No') -->
+        <div class="auth-card" id="authStandardCard" style="display:none">
             <div class="auth-header">
                 <img src="logo.png" alt="MAISON" class="auth-logo-mark auth-logo-img">
                 <div class="auth-brand-text">
@@ -2120,27 +2446,14 @@
                     </div>
                 </div>
 
-                <!-- Login Extras: Remember Me & Forgot Password & Login as Admin (Login Mode Only) -->
+                <!-- Login Extras: Remember Me & Forgot Password (Login Mode Only) -->
                 <div id="authLoginExtras" style="margin-bottom:12px;text-align:left">
-                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;font-size:11px">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px">
                         <label style="display:flex;align-items:center;gap:7px;color:#c0cad2;cursor:pointer;user-select:none">
                             <input type="checkbox" id="authRememberMe" style="accent-color:var(--gold);width:14px;height:14px;cursor:pointer;margin:0">
                             <span>Remember me</span>
                         </label>
                         <button type="button" class="linkbtn" id="forgotPasswordBtn" style="color:var(--gold);font-size:11px;font-weight:600;padding:0;background:none;border:none;cursor:pointer">Forgot password?</button>
-                    </div>
-
-                    <div style="background:rgba(215,183,122,0.06);border:1px solid rgba(215,183,122,0.22);border-radius:8px;padding:8px 11px">
-                        <label style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text);cursor:pointer;user-select:none;font-weight:600">
-                            <input type="checkbox" id="authLoginAsAdmin" style="accent-color:var(--gold);width:14px;height:14px;cursor:pointer;margin:0">
-                            <span style="display:flex;align-items:center;gap:6px">
-                                <span style="color:var(--gold)">Login as Admin</span>
-                                <span style="font-size:8.5px;background:#2a2318;color:var(--gold);border:1px solid #57482a;padding:1px 5px;border-radius:3px;font-weight:700">ADMIN</span>
-                            </span>
-                        </label>
-                        <div style="font-size:9.5px;color:var(--muted);margin-top:3px;margin-left:22px">
-                            Auto-fill default: Admin &bull; admin@gmail.com &bull; Admin@123
-                        </div>
                     </div>
                 </div>
 
@@ -2156,13 +2469,17 @@
                     style="width:100%;padding:10px 14px;font-size:13px;font-weight:700;letter-spacing:.05em">Sign In to Platform</button>
             </form>
 
-            <div style="margin-top:13px;font-size:11px;color:var(--muted)" id="authSwitchPrompt">
-                Don't have an account? <button type="button" class="linkbtn" id="linkSwitch"
-                    style="font-weight:600">Create one now →</button>
+            <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <button type="button" class="linkbtn" id="backToAdminPromptBtn"
+                    style="color:var(--gold);font-size:11.5px;font-weight:600;background:none;border:none;cursor:pointer;padding:0">Admin</button>
+                <div style="font-size:11px;color:var(--muted);text-align:right" id="authSwitchPrompt">
+                    Don't have an account? <button type="button" class="linkbtn" id="linkSwitch"
+                        style="font-weight:600">Create one now →</button>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Sticky Mobile & Tablet Top Bar (300px to 1000px) -->
+    <!-- Sticky Mobile & Tablet Top Bar (300px to 1024px) -->
     <header class="mobile-navbar" id="mobileNavbar">
         <div class="mobile-brand">
             <img src="logo.png" alt="MAISON" class="mark brand-logo-img">
@@ -2858,10 +3175,11 @@
         function showToast(msg, type = 'info') {
             let container = $('toastContainer');
             if (!container) return;
+            let cleanMsg = String(msg || '').replace(/^[✓✔\s]+/, '').trim();
             let toast = document.createElement('div');
             toast.className = 'maison-toast ' + type;
             let icon = type === 'success' ? '✓' : type === 'warning' ? '⚠' : 'ℹ';
-            toast.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-msg">${esc(msg)}</span><button class="toast-close" aria-label="Dismiss">×</button>`;
+            toast.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-msg">${esc(cleanMsg)}</span><button class="toast-close" aria-label="Dismiss">✕</button>`;
             container.appendChild(toast);
             toast.querySelector('.toast-close').onclick = () => { toast.remove(); };
             setTimeout(() => {
@@ -3655,6 +3973,7 @@
             currentUser = { name: displayName, email: norm, loggedInAt: new Date().toISOString() };
             try {
                 localStorage.setItem('maison_auth_user', JSON.stringify(currentUser));
+                sessionStorage.setItem('maison_session_authed', 'true');
             } catch (e) { }
             document.documentElement.classList.add('user-authed');
             $('authScreen').classList.add('hidden');
@@ -3675,6 +3994,33 @@
             hideAuthNotice();
             updateCapacityUI();
             showToast(`Signed in successfully. Welcome, ${displayName}!`, 'success');
+        }
+
+        function loginAsAdminDirect() {
+            loginSuccess('Admin', 'admin@gmail.com');
+            goto('overview');
+            setTimeout(() => {
+                showToast('Access granted to Maison Overview.', 'success');
+            }, 2200);
+        }
+
+        function showStandardLoginCard() {
+            if ($('adminPromptCard')) $('adminPromptCard').style.display = 'none';
+            if ($('authStandardCard')) {
+                $('authStandardCard').style.display = 'block';
+                $('authStandardCard').style.animation = 'authFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                setTimeout(() => {
+                    if ($('authEmail')) $('authEmail').focus();
+                }, 60);
+            }
+        }
+
+        function showAdminPromptCard() {
+            if ($('authStandardCard')) $('authStandardCard').style.display = 'none';
+            if ($('adminPromptCard')) {
+                $('adminPromptCard').style.display = 'block';
+                $('adminPromptCard').style.animation = 'authFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            }
         }
 
         function handleAuthSubmit(e) {
@@ -3778,10 +4124,15 @@
             closeHamburgerDrawer();
             try {
                 localStorage.removeItem('maison_auth_user');
+                sessionStorage.removeItem('maison_session_authed');
             } catch (e) { }
             document.documentElement.classList.remove('user-authed');
             $('authScreen').classList.remove('hidden');
             syncBodyScroll();
+
+            // Reset modal cards so the Admin Prompt comes first upon logout
+            if ($('adminPromptCard')) $('adminPromptCard').style.display = 'block';
+            if ($('authStandardCard')) $('authStandardCard').style.display = 'none';
 
             let rem = false;
             let remEmail = '';
@@ -3812,8 +4163,9 @@
             saveRegisteredUsers(getRegisteredUsers());
             let saved = null;
             try {
+                let isSessionAuthed = sessionStorage.getItem('maison_session_authed') === 'true';
                 let raw = localStorage.getItem('maison_auth_user');
-                if (raw) saved = JSON.parse(raw);
+                if (isSessionAuthed && raw) saved = JSON.parse(raw);
             } catch (e) { }
             if (saved && saved.email) {
                 currentUser = saved;
@@ -3825,12 +4177,48 @@
                 if ($('userEmailSpan')) $('userEmailSpan').textContent = saved.email;
                 if ($('reportsUserName')) $('reportsUserName').textContent = displayName;
                 if ($('reportsUserEmail')) $('reportsUserEmail').textContent = saved.email;
+                updateCapacityUI();
             } else {
                 currentUser = null;
                 document.documentElement.classList.remove('user-authed');
                 $('authScreen').classList.remove('hidden');
                 syncBodyScroll();
+                // Admin Prompt comes first!
+                if ($('adminPromptCard')) $('adminPromptCard').style.display = 'block';
+                if ($('authStandardCard')) $('authStandardCard').style.display = 'none';
             }
+
+            // Bind Admin Prompt Buttons
+            if ($('adminPromptYesBtn')) {
+                $('adminPromptYesBtn').onclick = () => {
+                    loginAsAdminDirect();
+                };
+            }
+            if ($('adminPromptNoBtn')) {
+                $('adminPromptNoBtn').onclick = () => {
+                    showStandardLoginCard();
+                };
+            }
+            if ($('backToAdminPromptBtn')) {
+                $('backToAdminPromptBtn').onclick = () => {
+                    showAdminPromptCard();
+                };
+            }
+
+            // Keyboard navigation on Admin Prompt: Enter = Yes (Admin), Escape = No (Standard Login)
+            window.addEventListener('keydown', e => {
+                let adminPrompt = $('adminPromptCard');
+                let isAuthActive = !document.documentElement.classList.contains('user-authed');
+                if (isAuthActive && adminPrompt && adminPrompt.style.display !== 'none') {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        loginAsAdminDirect();
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        showStandardLoginCard();
+                    }
+                }
+            });
 
             $('tabLogin').onclick = () => setAuthMode('login');
             $('tabRegister').onclick = () => setAuthMode('register');
@@ -3962,7 +4350,7 @@
             if ($('sidebarCloseBtn')) $('sidebarCloseBtn').onclick = closeHamburgerDrawer;
             if ($('hamburgerBackdrop')) $('hamburgerBackdrop').onclick = closeHamburgerDrawer;
             window.addEventListener('keydown', e => { if (e.key === 'Escape') closeHamburgerDrawer(); });
-            window.addEventListener('resize', () => { if (window.innerWidth > 1000) closeHamburgerDrawer(); });
+            window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeHamburgerDrawer(); });
 
             updateCapacityUI();
         }
@@ -3977,7 +4365,7 @@
             btn.classList.toggle('is-active', isOpen);
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             if (backdrop) backdrop.classList.toggle('is-open', isOpen);
-            if (window.innerWidth <= 1000) {
+            if (window.innerWidth <= 1024) {
                 document.body.style.overflow = isOpen ? 'hidden' : '';
             }
         }
